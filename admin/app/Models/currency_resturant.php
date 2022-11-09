@@ -22,6 +22,8 @@ class currency_resturant extends Model
     public $hidden=["created_at","updated_at"];
 
 
+
+
     public function resturants(){
 
 
@@ -35,6 +37,12 @@ class currency_resturant extends Model
 
     return $this->belongsTo(currency::class,"currency_id");
 
-}
+    }
+
+
+    public function jobs(){
+
+        return $this->hasMany(job::class,"currency_resturant_id");
+    }
 
 }

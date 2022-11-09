@@ -46,7 +46,7 @@ type Resturant_without_message{
     # chats: [Chat] @hasMany
     currencies:[Currency] @belongsToMany
     currencyinresturant:[currency_resturant] @hasMany
-
+    jobs:[Job] @hasMany
 }
 
 

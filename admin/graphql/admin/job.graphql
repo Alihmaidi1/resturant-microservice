@@ -1,0 +1,24 @@
+extend type Mutation{
+
+    addjob(name_en:String,name_ar:String,salary:Float,currency_resturant_id:ID,resturant_id:ID): Job @validator @guard @can(ability:"create",injectArgs:true) @can(ability:"job")
+    editjob(id:ID,name_en:String,name_ar:String,salary:Float,currency_resturant_id:ID,resturant_id:ID): Job @validator @guard @can(ability:"job") @can(ability:"update",injectArgs:true)
+    deletejob(id:ID): Job @validator @guard @can(ability:"job") @can(ability:"delete",injectArgs:true)
+
+
+}
+
+extend type Query{
+
+    getalljob(resturant_id:ID): [Job!]  @guard @validator @can(ability:"job") @can(ability:"viewAny",injectArgs:true)
+
+}
+
+type Job{
+
+    id:ID
+    name:String
+    salary:Int
+    resturant:Resturant @belongsTo
+    currencyResturant: currency_resturant @belongsTo
+
+}

@@ -29,4 +29,12 @@ class resturant extends Model
         return $this->hasMany(currency_resturant::class,"resturant_id");
     }
 
+
+    public function jobs(){
+
+
+        return $this->hasMany(job::class,"resturant_id");
+    }
+
+
 }

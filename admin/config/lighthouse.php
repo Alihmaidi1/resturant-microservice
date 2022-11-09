@@ -174,6 +174,7 @@ return [
             'App\\GraphQL\\Queries\\Admin\\Account',
             'App\\GraphQL\\Queries\\Admin\\Resturant',
             'App\\GraphQL\\Queries\\Admin\\Currency',
+            'App\\GraphQL\\Queries\\Admin\\Job',
 
             'App\\GraphQL\\Queries'
 
@@ -185,6 +186,7 @@ return [
             'App\\GraphQL\\Mutations\\Admin\\Role',
             'App\\GraphQL\\Mutations\\Admin\\Resturant',
             'App\\GraphQL\\Mutations\\Admin\\Currency',
+            'App\\GraphQL\\Mutations\\Admin\\Job',
 
             'App\\GraphQL\\Mutations'
 
@@ -200,6 +202,7 @@ return [
             'App\\GraphQL\\Validators\\Admin\\Role',
             'App\\GraphQL\\Validators\\Admin\\Resturant',
             'App\\GraphQL\\Validators\\Admin\\Currency',
+            'App\\GraphQL\\Validators\\Admin\\Job',
 
 
             'App\\GraphQL\\Validators'

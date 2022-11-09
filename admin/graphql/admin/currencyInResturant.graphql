@@ -13,6 +13,6 @@ type currency_resturant{
     resturants:Resturant @belongsTo
     currencies:Currency @belongsTo
     message:String
-
+    jobs:[Job] @hasMany
 
 }

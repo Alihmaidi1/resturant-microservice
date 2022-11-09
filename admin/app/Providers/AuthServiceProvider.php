@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Gate;
 
 use App\Models\admin;
 use App\Models\currency_resturant;
+use App\Models\job;
 use App\Policies\adminPolicy;
 use App\Policies\currencyPolicy;
+use App\Policies\jobPolicy;
 use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Config;
@@ -24,7 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
 
         currency_resturant::class=>currencyPolicy::class,
-        admin::class=>adminPolicy::class
+        admin::class=>adminPolicy::class,
+        job::class=>jobPolicy::class
 
     ];
 
