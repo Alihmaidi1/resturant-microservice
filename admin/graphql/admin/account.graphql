@@ -8,10 +8,10 @@ extend type Mutation{
 
     login(email:String,password:String):Admin!   @validator
     token(your_refresh_token: String!): Token! @validator
-    # resetemail(email:String):Message1 @validator
+    resetemail(email:String):Message1 @validator
     logout:Admin @guard
-    # changepassword(password:String):Admin @validator @guard(with:["reset_password"])
-    # checkresetcode(code:String):Message1 @validator @guard(with:["reset_password"])
+    changepassword(password:String):Admin @validator @guard(with:["reset_password"])
+    checkresetcode(code:String):Message1 @validator @guard(with:["reset_password"])
     # createadmin(email:String,password:String,role_id:ID,resturant_id:Int,rank:Int):Admin @guard @validator @can(ability: "create", injectArgs: true) @can(ability:"admin")
     # deleteadmin(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"forceDelete",injectArgs:true)
     # admininfo(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"view",injectArgs: true)

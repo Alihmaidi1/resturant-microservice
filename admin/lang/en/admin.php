@@ -261,7 +261,9 @@ return [
     "storehouse id is not exists in our data"=>"storehouse id is not exists in our data",
     "day field is required"=>"day field is required",
     "day field should be date"=>"day field should be date",
-    "refresh token is required"=>"refresh token is required"
+    "refresh token is required"=>"refresh token is required",
+    "code is required"=>"code is required",
+
 
 
 

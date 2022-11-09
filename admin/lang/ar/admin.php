@@ -261,7 +261,9 @@ return [
     "storehouse id is not exists in our data"=>"معرف المخزن غير موجود ضمن بياناتنا",
     "day field is required"=>"حقل اليوم مطلوب" ,
     "day field should be date"=>"حقل اليوم يجب أن يكون من نوع تاريخ",
-    "refresh token is required"=>"حقل الرفريش توكن مطلوب"
+    "refresh token is required"=>"حقل الرفريش توكن مطلوب",
+    "code is required"=>"الكود مطلوب",
+
 
 
 
