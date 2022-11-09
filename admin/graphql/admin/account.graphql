@@ -1,7 +1,9 @@
 extend type Query{
     getalladmin:[Admin!]  @guard @can(ability:"admin")
-#     me:Admin @guard
+    me:Admin @guard @auth
     getpermission:PermissionArray @guard @can(ability:"role",model:"App\\Models\\admin")
+    admininfo(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"view",injectArgs: true)
+
 }
 
 extend type Mutation{
@@ -12,11 +14,10 @@ extend type Mutation{
     logout:Admin @guard
     changepassword(password:String):Admin @validator @guard(with:["reset_password"])
     checkresetcode(code:String):Message1 @validator @guard(with:["reset_password"])
-    # createadmin(email:String,password:String,role_id:ID,resturant_id:Int,rank:Int):Admin @guard @validator @can(ability: "create", injectArgs: true) @can(ability:"admin")
-    # deleteadmin(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"forceDelete",injectArgs:true)
-    # admininfo(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"view",injectArgs: true)
-    # updateemail(email:String): Admin @guard @validator
-    # updateadmin(id:ID,email:String,role_id:Int,resturant_id:Int,rank:Int,password:String): Admin @guard @validator  @can(ability:"admin") @can(ability:"update",injectArgs:true)
+    createadmin(email:String,password:String,role_id:ID,resturant_id:Int,rank:Int):Admin @guard @validator @can(ability: "create", injectArgs: true) @can(ability:"admin")
+    deleteadmin(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"forceDelete",injectArgs:true)
+    updateemail(email:String): Admin @guard @validator
+    updateadmin(id:ID,email:String,role_id:Int,resturant_id:Int,rank:Int,password:String): Admin @guard @validator  @can(ability:"admin") @can(ability:"update",injectArgs:true)
 }
 
 
