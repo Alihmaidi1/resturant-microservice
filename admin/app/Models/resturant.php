@@ -43,4 +43,9 @@ class resturant extends Model
 
     }
 
+    public function employees(){
+
+        return $this->hasMany("App\Models\\employee","resturant_id");
+    }
+
 }

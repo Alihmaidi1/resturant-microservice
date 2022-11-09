@@ -175,7 +175,10 @@ return [
             'App\\GraphQL\\Queries\\Admin\\Resturant',
             'App\\GraphQL\\Queries\\Admin\\Currency',
             'App\\GraphQL\\Queries\\Admin\\Job',
-            'App\\GraphQL\\Queries\\Admin\\employeeExperience',
+            'App\\GraphQL\\Queries\\Admin\\EmployeeExperience',
+            'App\\GraphQL\\Queries\\Admin\\Employee',
+
+
 
             'App\\GraphQL\\Queries'
 
@@ -188,7 +191,8 @@ return [
             'App\\GraphQL\\Mutations\\Admin\\Resturant',
             'App\\GraphQL\\Mutations\\Admin\\Currency',
             'App\\GraphQL\\Mutations\\Admin\\Job',
-            'App\\GraphQL\\Mutations\\Admin\\employeeExperience',
+            'App\\GraphQL\\Mutations\\Admin\\EmployeeExperience',
+            'App\\GraphQL\\Mutations\\Admin\\Employee',
 
             'App\\GraphQL\\Mutations'
 
@@ -205,7 +209,8 @@ return [
             'App\\GraphQL\\Validators\\Admin\\Resturant',
             'App\\GraphQL\\Validators\\Admin\\Currency',
             'App\\GraphQL\\Validators\\Admin\\Job',
-            'App\\GraphQL\\Validators\\Admin\\employeeExperience',
+            'App\\GraphQL\\Validators\\Admin\\EmployeeExperience',
+            'App\\GraphQL\\Validators\\Admin\\Employee',
 
 
             'App\\GraphQL\\Validators'

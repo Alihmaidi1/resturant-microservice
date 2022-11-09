@@ -18,6 +18,13 @@ class job extends Model
         return $this->belongsTo(resturant::class,"resturant_id");
     }
 
+    public function employees(){
+
+        return $this->hasMany("App\Models\\employee","job_id");
+
+    }
+
+
 
     public function currencyResturant(){
 
