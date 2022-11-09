@@ -1,0 +1,24 @@
+extend type Mutation{
+
+    addrole(name_ar:String,name_en:String,permission:[String]):Role @guard @validator @can(ability:"role")
+    deleterole(id:ID):Role @guard @validator @can(ability:"role")
+    editrole(id:ID,name_en:String,name_ar:String,permission:[String]):Role @guard @validator @can(ability:"role")
+}
+
+extend type Query{
+
+    getallrole:[Role] @all
+
+}
+
+ type Role{
+
+    id:ID
+    name:String
+    permssions:[String]
+    admins:[Admin] @hasMany
+    message:String
+
+}
+
+

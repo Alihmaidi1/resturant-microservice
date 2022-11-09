@@ -1,0 +1,60 @@
+extend type Query{
+    getalladmin:[Admin!]  @guard @can(ability:"admin")
+#     me:Admin @guard
+    getpermission:PermissionArray @guard @can(ability:"role",model:"App\\Models\\admin")
+}
+
+extend type Mutation{
+
+    login(email:String,password:String):Admin!   @validator
+    token(your_refresh_token: String!): Token! @validator
+    # resetemail(email:String):Message1 @validator
+    logout:Admin @guard
+    # changepassword(password:String):Admin @validator @guard(with:["reset_password"])
+    # checkresetcode(code:String):Message1 @validator @guard(with:["reset_password"])
+    # createadmin(email:String,password:String,role_id:ID,resturant_id:Int,rank:Int):Admin @guard @validator @can(ability: "create", injectArgs: true) @can(ability:"admin")
+    # deleteadmin(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"forceDelete",injectArgs:true)
+    # admininfo(id:ID):Admin @guard @validator @can(ability:"admin") @can(ability:"view",injectArgs: true)
+    # updateemail(email:String): Admin @guard @validator
+    # updateadmin(id:ID,email:String,role_id:Int,resturant_id:Int,rank:Int,password:String): Admin @guard @validator  @can(ability:"admin") @can(ability:"update",injectArgs:true)
+}
+
+
+
+type Admin{
+    id:ID
+    message:String
+    token_info:Token
+    email:String
+    role:Role @belongsTo
+    rank:Int
+    resturant: Resturant @belongsTo
+}
+
+
+type Token{
+    access_token:String
+    token_type:String
+    expires_in:String
+    refresh_token:String
+}
+
+type Permssion{
+
+    category: String
+
+}
+
+type PermissionArray{
+
+    key:[String]
+    value:[String]
+
+
+}
+
+type Message1{
+
+    message: String
+    token: String
+}

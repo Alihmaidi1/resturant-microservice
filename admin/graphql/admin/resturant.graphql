@@ -1,0 +1,47 @@
+
+# extend type Mutation{
+
+    # addresturant(address:String,name:String):Resturant @guard @validator @can(ability:"resturant")
+    # editresturant(id:ID,name:String,address:String):Resturant @guard @validator @can(ability:"resturant")
+    # deleteresturant(id:ID):Resturant @guard @validator @can(ability:"resturant")
+
+
+
+# }
+
+type Query{
+
+    findresturant(id:ID):Resturant
+    getallresturant:[Resturant_without_message!]
+
+}
+
+ type Resturant{
+
+    id:ID
+    address:String
+    name:String
+    employees:[Employee] @hasMany
+    message:String
+    storehouses:[storehouse] @hasMany
+    tables: [table] @hasMany
+    foodinresturant:[Foodinresturant!] @hasMany
+    chats: [Chat] @hasMany
+    admins:Admin @hasMany
+}
+
+
+type Resturant_without_message{
+
+    id:ID
+    address:String
+    storehouses:[storehouse] @hasMany
+    tables: [table] @hasMany
+    name:String
+    employees:[Employee] @hasMany
+    foods:[Food] @belongsToMany
+    chats: [Chat] @hasMany
+
+}
+
+
