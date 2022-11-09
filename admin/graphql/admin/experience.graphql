@@ -1,0 +1,24 @@
+
+extend type Mutation{
+
+    addexperiece(year:Int,benifit:Int,vacation:Int,resturant_id:ID): Experience @validator @guard @can(ability:"experience",model:"App\\Models\\employee_experience") @can(ability:"create",model:"App\\Models\\employee_experience",injectArgs:true)
+    editexperiece(id:ID,year:Int,benifit:Int,vacation:Int,resturant_id:ID): Experience @validator @guard @can(ability:"experience",model:"App\\Models\\employee_experience") @can(ability:"update",model:"App\\Models\\employee_experience",injectArgs:true)
+
+    deleteexperiece(id:ID):Experience @validator @guard @can(ability:"experience",model:"App\\Models\\employee_experience") @can(ability:"delete",model:"App\\Models\\employee_experience",injectArgs:true)
+}
+
+extend type Query{
+
+    getallexperiece(resturant_id:ID): [Experience]   @guard @validator @can(ability:"experience",model:"App\\Models\\employee_experience") @can(ability:"view",model:"App\\Models\\employee_experience",injectArgs:true)
+
+}
+type Experience{
+
+    id:ID
+    year:String
+    benifit:Int
+    vacation:Int
+    # employees:[Employee] @hasMany
+    message: String
+    resturant: Resturant @belongsTo
+}

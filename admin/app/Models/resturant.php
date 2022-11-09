@@ -37,4 +37,10 @@ class resturant extends Model
     }
 
 
+    public function employeeExperiences(){
+
+        return $this->hasMany(employee_experience::class,"resturant_id");
+
+    }
+
 }
