@@ -1,0 +1,18 @@
+extend type Mutation{
+
+
+    addcurrencyinresturant(resturant_id:ID,currency_id:ID,is_default:Int):currency_resturant @guard @validator @can(ability:"currency") @can(ability:"create",injectArgs:true)
+    deletecurrencyinresturant(id:ID):currency_resturant @guard @validator @can(ability:"currency") @can(ability:"delete",injectArgs:true)
+}
+
+
+type currency_resturant{
+
+    id:ID
+    is_default_for_website:String
+    resturants:Resturant @belongsTo
+    currencies:Currency @belongsTo
+    message:String
+
+
+}

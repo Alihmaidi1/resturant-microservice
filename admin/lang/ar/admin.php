@@ -263,6 +263,9 @@ return [
     "day field should be date"=>"حقل اليوم يجب أن يكون من نوع تاريخ",
     "refresh token is required"=>"حقل الرفريش توكن مطلوب",
     "code is required"=>"الكود مطلوب",
+    "is default fpr website is required"=>"حقل فيما اذا كان افتراضي مطلوب",
+    "the currency was deleted successfully from resturant"=>"تم حذف العملة من المطعم بنجاح",
+
 
 
 

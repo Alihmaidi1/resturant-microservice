@@ -21,12 +21,15 @@ type Query{
     id:ID
     address:String
     name:String
-    employees:[Employee] @hasMany
+    # employees:[Employee] @hasMany
     message:String
-    storehouses:[storehouse] @hasMany
-    tables: [table] @hasMany
-    foodinresturant:[Foodinresturant!] @hasMany
-    chats: [Chat] @hasMany
+    # storehouses:[storehouse] @hasMany
+    # tables: [table] @hasMany
+    # foodinresturant:[Foodinresturant!] @hasMany
+    # chats: [Chat] @hasMany
+    currencies:[Currency] @belongsToMany
+    currencyinresturant:[currency_resturant] @hasMany
+
     admins:Admin @hasMany
 }
 
@@ -35,12 +38,14 @@ type Resturant_without_message{
 
     id:ID
     address:String
-    storehouses:[storehouse] @hasMany
-    tables: [table] @hasMany
+    # storehouses:[storehouse] @hasMany
+    # tables: [table] @hasMany
     name:String
-    employees:[Employee] @hasMany
-    foods:[Food] @belongsToMany
-    chats: [Chat] @hasMany
+    # employees:[Employee] @hasMany
+    # foods:[Food] @belongsToMany
+    # chats: [Chat] @hasMany
+    currencies:[Currency] @belongsToMany
+    currencyinresturant:[currency_resturant] @hasMany
 
 }
 

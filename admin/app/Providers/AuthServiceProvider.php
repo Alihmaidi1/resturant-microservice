@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 
 use App\Models\admin;
+use App\Models\currency_resturant;
+use App\Policies\adminPolicy;
+use App\Policies\currencyPolicy;
 use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Config;
@@ -19,6 +22,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+
+        currency_resturant::class=>currencyPolicy::class,
+        admin::class=>adminPolicy::class
+
     ];
 
     /**
@@ -30,6 +37,17 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define("isadmin",function(admin $admin){
+
+            if($admin->resturant_id==null){
+
+                return true;
+            }else{
+
+                return false;
+            }
+
+        });
 
         foreach(Config::get("global.permssion") as $name=>$value){
 

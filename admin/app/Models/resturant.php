@@ -17,4 +17,16 @@ class resturant extends Model
         return $this->hasMany(admin::class,"resturant_id");
     }
 
+
+    public function currencies(){
+
+
+        return $this->belongsToMany(currency::class,currency_resturant::class,"currency_id","resturant_id");
+    }
+
+    public function currency_resturant(){
+
+        return $this->hasMany(currency_resturant::class,"resturant_id");
+    }
+
 }

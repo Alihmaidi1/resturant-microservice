@@ -263,7 +263,8 @@ return [
     "day field should be date"=>"day field should be date",
     "refresh token is required"=>"refresh token is required",
     "code is required"=>"code is required",
-
+    "is default fpr website is required"=>"is default fpr website is required",
+    "the currency was deleted successfully from resturant"=>"the currency was deleted successfully from resturant",
 
 
 
