@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "nuwave/lighthouse": "^5.64",
+        "predis/predis": "^2.0",
         "spatie/laravel-translatable": "^6.1"
     },
     "require-dev": {

@@ -1,17 +1,17 @@
 
-# extend type Mutation{
+extend type Mutation{
 
-    # addresturant(address:String,name:String):Resturant @guard @validator @can(ability:"resturant")
-    # editresturant(id:ID,name:String,address:String):Resturant @guard @validator @can(ability:"resturant")
-    # deleteresturant(id:ID):Resturant @guard @validator @can(ability:"resturant")
+    addresturant(address:String,name:String):Resturant @guard @validator @can(ability:"resturant")
+    editresturant(id:ID,name:String,address:String):Resturant @guard @validator @can(ability:"resturant")
+    deleteresturant(id:ID):Resturant @guard @validator @can(ability:"resturant")
 
 
 
-# }
+}
 
 type Query{
 
-    findresturant(id:ID):Resturant
+    findresturant(id:ID):Resturant @validator
     getallresturant:[Resturant_without_message!]
 
 }

@@ -172,6 +172,8 @@ return [
         'models' => ['App', 'App\\Models'],
         'queries' => [
             'App\\GraphQL\\Queries\\Admin\\Account',
+            'App\\GraphQL\\Queries\\Admin\\Resturant',
+
             'App\\GraphQL\\Queries'
 
         ],
@@ -180,6 +182,7 @@ return [
 
             'App\\GraphQL\\Mutations\\Admin\\Account',
             'App\\GraphQL\\Mutations\\Admin\\Role',
+            'App\\GraphQL\\Mutations\\Admin\\Resturant',
 
             'App\\GraphQL\\Mutations'
 
@@ -193,6 +196,7 @@ return [
 
             'App\\GraphQL\\Validators\\Admin\\Account',
             'App\\GraphQL\\Validators\\Admin\\Role',
+            'App\\GraphQL\\Validators\\Admin\\Resturant',
 
 
             'App\\GraphQL\\Validators'
