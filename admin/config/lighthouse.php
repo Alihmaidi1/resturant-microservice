@@ -177,6 +177,16 @@ return [
             'App\\GraphQL\\Queries\\Admin\\Job',
             'App\\GraphQL\\Queries\\Admin\\EmployeeExperience',
             'App\\GraphQL\\Queries\\Admin\\Employee',
+            'App\\GraphQL\\Queries\\Admin\\Category',
+            'App\\GraphQL\\Queries\\Admin\\Tabletype',
+            'App\\GraphQL\\Queries\\Admin\\Table',
+            'App\\GraphQL\\Queries\\Admin\\Storehouse',
+            'App\\GraphQL\\Queries\\Admin\\Good',
+            'App\\GraphQL\\Queries\\Admin\\Goodstore',
+            'App\\GraphQL\\Queries\\Admin\\Slider',
+            'App\\GraphQL\\Queries\\Admin\\Banner',
+            'App\\GraphQL\\Queries\\Admin\\Food',
+            'App\\GraphQL\\Queries\\Admin\\Setting',
 
 
 
@@ -193,6 +203,17 @@ return [
             'App\\GraphQL\\Mutations\\Admin\\Job',
             'App\\GraphQL\\Mutations\\Admin\\EmployeeExperience',
             'App\\GraphQL\\Mutations\\Admin\\Employee',
+            'App\\GraphQL\\Mutations\\Admin\\Category',
+            'App\\GraphQL\\Mutations\\Admin\\Tabletype',
+            'App\\GraphQL\\Mutations\\Admin\\Table',
+            'App\\GraphQL\\Mutations\\Admin\\Storehouse',
+            'App\\GraphQL\\Mutations\\Admin\\Good',
+            'App\\GraphQL\\Mutations\\Admin\\Goodstore',
+            'App\\GraphQL\\Mutations\\Admin\\Slider',
+            'App\\GraphQL\\Mutations\\Admin\\Banner',
+            'App\\GraphQL\\Mutations\\Admin\\Food',
+            'App\\GraphQL\\Mutations\\Admin\\Setting',
+
 
             'App\\GraphQL\\Mutations'
 
@@ -211,6 +232,16 @@ return [
             'App\\GraphQL\\Validators\\Admin\\Job',
             'App\\GraphQL\\Validators\\Admin\\EmployeeExperience',
             'App\\GraphQL\\Validators\\Admin\\Employee',
+            'App\\GraphQL\\Validators\\Admin\\Category',
+            'App\\GraphQL\\Validators\\Admin\\Tabletype',
+            'App\\GraphQL\\Validators\\Admin\\Table',
+            'App\\GraphQL\\Validators\\Admin\\Storehouse',
+            'App\\GraphQL\\Validators\\Admin\\Good',
+            'App\\GraphQL\\Validators\\Admin\\Goodstore',
+            'App\\GraphQL\\Validators\\Admin\\Slider',
+            'App\\GraphQL\\Validators\\Admin\\Banner',
+            'App\\GraphQL\\Validators\\Admin\\Food',
+            'App\\GraphQL\\Validators\\Admin\\Setting',
 
 
             'App\\GraphQL\\Validators'

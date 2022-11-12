@@ -1,0 +1,25 @@
+extend type Mutation{
+
+    addtabletype(price: Float,name_en:String,name_ar:String,currency_id:ID,resturant_id:ID): tabletype @validator @guard @can(ability:"tabletype") @can(ability:"create",injectArgs:true)
+    edittabletype(id:ID,name_en:String,name_ar:String,price:Float,currency_id:Int,resturant_id:ID): tabletype @validator @guard @can(ability:"tabletype") @can(ability:"update",injectArgs:true)
+    deletetabletype(id:ID):tabletype @validator @guard @can(ability:"tabletype")  @can(ability:"delete",injectArgs:true)
+
+}
+
+extend type Query{
+
+    getalltabletype(resturant_id:ID): [tabletype!] @validator
+
+}
+
+type tabletype{
+
+
+    id:ID
+    price: Float
+    name: String
+    currency: Currency @belongsTo
+    resturant:Resturant @belongsTo
+    message: String
+    tables: [table] @hasMany
+}

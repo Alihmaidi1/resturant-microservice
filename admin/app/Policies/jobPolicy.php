@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\admin;
+use App\Models\currency;
 use App\Models\currency_resturant;
 use App\Models\User;
 use App\Models\job;
@@ -60,8 +61,8 @@ class jobPolicy
 
             return true;
         }
-        $currency_resturant=currency_resturant::find($injected["currency_resturant_id"]);
-        if($admin->resturant_id==$injected["resturant_id"]&& $admin->resturant_id==$currency_resturant->resturant_id){
+        $currency=currency::find($injected["currency_id"]);
+        if($admin->resturant_id==$injected["resturant_id"]&& $admin->resturant_id==$currency->resturant_id){
 
             return true;
         }
@@ -91,8 +92,8 @@ class jobPolicy
         }
 
         $job=job::find($injected["id"]);
-        $currency_resturant=currency_resturant::find($injected["currency_resturant_id"]);
-        if($admin->resturant_id==$injected["resturant_id"]&& $admin->resturant_id==$currency_resturant->resturant_id &&$admin->resturant_id==$job->resturant_id){
+        $currency=currency::find($injected["currency_id"]);
+        if($admin->resturant_id==$injected["resturant_id"]&& $admin->resturant_id==$currency->resturant_id &&$admin->resturant_id==$job->resturant_id){
 
             return true;
         }

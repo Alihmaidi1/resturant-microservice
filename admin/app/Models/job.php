@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 class job extends Model
 {
     use HasFactory,HasTranslations;
-    public $fillable=["name","salary","currency_resturant_id","resturant_id"];
+    public $fillable=["name","salary","currency_id","resturant_id"];
     public $hidden=["created_at","updated_at"];
     public $translatable = ['name'];
 
@@ -24,12 +24,12 @@ class job extends Model
 
     }
 
+    public function currency(){
 
-
-    public function currencyResturant(){
-
-        return $this->belongsTo(currency_resturant::class,"currency_resturant_id");
+        return $this->belongsTo(currency::class,"currency_id");
     }
+
+
 
 
 

@@ -1,0 +1,7 @@
+type image{
+    id:ID
+    url:String
+    imageable: Imageable @morphTo
+}
+
+union Imageable = Category

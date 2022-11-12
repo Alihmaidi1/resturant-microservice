@@ -1,0 +1,57 @@
+extend type Mutation{
+    addsetting(resturant_id:ID,status:Int,phone:String,meta_title_en:String,meta_title_ar:String,meta_description_en:String,meta_description_ar:String,meta_keyword:String,meta_logo:Upload,balance_status:Int,balance_charge:Float,currency_id:ID,open_at:String,close_at:String,day_open_en:[String],day_open_ar:[String],facebook_status:Int,facebook_link:String,whatsapp_status:Int,whatsapp_link:String,telegram_status:Int,telegram_link:String,instagram_status:Int,instagram_link:String,twitter_status:Int,twitter_link:String,paypal_status:Int,owner_name:String,logo:Upload): Setting @validator  @guard @can(ability:"setting") @can(ability:"create",injectArgs:true)
+    editsetting(id:ID,resturant_id:ID,status:Int,phone:String,meta_title_en:String,meta_title_ar:String,meta_description_en:String,meta_description_ar:String,meta_keyword:String,meta_logo:Upload,balance_status:Int,balance_charge:Float,currency_id:ID,open_at:String,close_at:String,day_open_en:[String],day_open_ar:[String],facebook_status:Int,facebook_link:String,whatsapp_status:Int,whatsapp_link:String,telegram_status:Int,telegram_link:String,instagram_status:Int,instagram_link:String,twitter_status:Int,twitter_link:String,paypal_status:Int,owner_name:String,logo:Upload): Setting @validator  @guard @can(ability:"setting") @can(ability:"update",injectArgs:true)
+
+
+
+}
+
+extend type Query{
+
+    getsetting(resturant_id:ID): Setting @guard @can(ability:"setting") @validator @can(ability:"view",injectArgs:true)
+
+}
+
+type Setting{
+
+
+    # paypal_client_id:String
+    # Paypal_secret:String
+    id:ID
+    meta_logo:String
+    logo:String
+    status:String
+    phone:String
+    meta_title:String
+    meta_description:String
+    meta_keyword:String
+    balance_status:String
+    balance_charge:String
+    open_at:String
+    close_at:String
+    day_open:[String]
+    facebook_status:String
+    facebook_link:String
+    whatsapp_status:String
+    whatsapp_link:String
+    telegram_status:String
+    telegram_link:String
+    instagram_status:String
+    instagram_link:String
+    twitter_status:String
+    twitter_link:String
+    paypal_status:String
+    owner_name:String
+    resturant:Resturant @belongsTo
+    currency:Currency @belongsTo
+    message:String
+}
+
+type Paypal{
+
+
+    message:String
+    clientId:String
+    secret:String
+
+}

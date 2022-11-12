@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\admin;
+use App\Models\currency;
 use App\Models\User;
 use App\Models\currency_resturant;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -29,10 +30,7 @@ class currencyPolicy
      * @param  \App\Models\currency_resturant  $currencyResturant
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, currency_resturant $currencyResturant)
-    {
-        //
-    }
+
 
     /**
      * Determine whether the user can create models.
@@ -47,6 +45,7 @@ class currencyPolicy
 
             return true;
         }
+
         if($admin->resturant_id==$injected["resturant_id"]){
 
             return true;
@@ -64,9 +63,22 @@ class currencyPolicy
      * @param  \App\Models\currency_resturant  $currencyResturant
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, currency_resturant $currencyResturant)
+    public function update(admin $admin, array $injected)
     {
-        //
+
+
+        if($admin->role_id==1){
+
+            return true;
+        }
+
+        $currency=currency::find($injected["id"]);
+        if($admin->resturant_id==$injected["resturant_id"]&& $admin->resturant_id==$currency->resturant_id){
+
+            return true;
+        }
+        return false;
+
     }
 
     /**
@@ -78,12 +90,11 @@ class currencyPolicy
      */
     public function delete(admin $admin, array $injected)
     {
-        return true;
         if($admin->role_id==1){
 
             return true;
         }
-        $currency_resturant=currency_resturant::find($injected["id"]);
+        $currency_resturant=currency::find($injected["id"]);
         if($admin->resturant_id==$currency_resturant->resturant_id){
             return true;
         }
@@ -98,7 +109,7 @@ class currencyPolicy
      * @param  \App\Models\currency_resturant  $currencyResturant
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, currency_resturant $currencyResturant)
+    public function restore(User $user, currency $currencyResturant)
     {
         //
     }
@@ -110,7 +121,7 @@ class currencyPolicy
      * @param  \App\Models\currency_resturant  $currencyResturant
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, currency_resturant $currencyResturant)
+    public function forceDelete(User $user, currency $currencyResturant)
     {
         //
     }

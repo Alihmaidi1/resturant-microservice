@@ -12,21 +12,41 @@ class resturant extends Model
 
     public $hidden=["created_at","updated_at"];
 
+
+
+    public function foods(){
+
+
+        return $this->hasMany(food::class,"resturant_id");
+    }
+
+
     public function admins(){
 
         return $this->hasMany(admin::class,"resturant_id");
     }
 
-
     public function currencies(){
 
-
-        return $this->belongsToMany(currency::class,currency_resturant::class,"currency_id","resturant_id");
+        return $this->hasMany(resturant::class,"resturant_id");
     }
 
-    public function currency_resturant(){
+    public function tabletypes(){
 
-        return $this->hasMany(currency_resturant::class,"resturant_id");
+        return $this->hasMany(tabletype::class,"resturant_id");
+    }
+
+
+    public function tables(){
+
+
+        return $this->hasMany(table::class,"resturant_id");
+    }
+
+
+    public function storehouses(){
+
+        return $this->hasMany(storehouse::class,"resturant_id");
     }
 
 
@@ -47,5 +67,41 @@ class resturant extends Model
 
         return $this->hasMany("App\Models\\employee","resturant_id");
     }
+
+
+    public function categories(){
+
+        return $this->hasMany(category::class,"resturant_id");
+
+    }
+
+
+    public function setting(){
+
+
+        return $this->hasOne(setting::class,"resturant_id");
+    }
+
+
+
+    public function goods(){
+
+
+        return $this->hasMany(good::class,"good_id");
+    }
+
+
+    public function sliders(){
+
+        return $this->hasMany(slider::class,"resturant_id");
+    }
+
+
+    public function banners(){
+
+
+        return $this->hasMany(banner::class,"resturant_id");
+    }
+
 
 }

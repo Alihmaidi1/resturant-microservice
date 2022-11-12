@@ -20,6 +20,8 @@ final class EditcurrencyValidator extends Validator
             "name_en"=>["required"],
             "name_ar"=>["required"],
             "precent_value_in_dular"=>["required"],
+            "resturant_id"=>["required","exists:resturants,id"],
+            "is_default"=>["required"]
 
         ];
     }
@@ -34,7 +36,10 @@ final class EditcurrencyValidator extends Validator
             "name_en.required"=>trans("admin.the name in english is required"),
             "name_ar.required"=>trans("admin.the name in arabic is required"),
             "precent_value_in_dular.required"=>trans("admin.the precent value in dular is required"),
-            "is_default_for_website.required"=>trans("admin.the field is default is required")
+            "is_default_for_website.required"=>trans("admin.the field is default is required"),
+            "resturant_id.required"=>trans("admin.resturant id is required"),
+            "resturant_id.exists"=>trans("admin.resturant id is not exists in our data"),
+            "is_default.required"=>trans("admin.is default is required")
         ];
     }
 

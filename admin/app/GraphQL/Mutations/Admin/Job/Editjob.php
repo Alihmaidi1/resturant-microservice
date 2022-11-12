@@ -17,7 +17,7 @@ final class Editjob
         $job=job::find($args["id"]);
         $job->name=["en"=>$args["name_en"],"ar"=>$args["name_ar"]];
         $job->salary=$args["salary"];
-        $job->currency_resturant_id=$args["currency_resturant_id"];
+        $job->currency_id=$args["currency_id"];
         $job->resturant_id=$args["resturant_id"];
         $job->save();
         $job->message=trans("admin.the job was updated successully");

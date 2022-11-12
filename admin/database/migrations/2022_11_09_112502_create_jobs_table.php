@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->text("name");
             $table->string("salary");
-            $table->unsignedBigInteger("currency_resturant_id");
-            $table->foreign("currency_resturant_id")->references("id")->on("currency_resturants")->onUpdate("cascade");
             $table->unsignedBigInteger("resturant_id");
             $table->foreign("resturant_id")->references("id")->on("resturants")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("currency_id");
+            $table->foreign("currency_id")->references("id")->on("currencies")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

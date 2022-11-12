@@ -1,0 +1,33 @@
+extend type Mutation{
+
+    addcategory(name_en:String,name_ar:String,logo:Upload,description_en:String,description_ar:String,meta_title_en:String,meta_title_ar:String,meta_description_en:String,meta_description_ar:String,meta_logo:Upload,keywords:String,status:Int,resturant_id:ID,images:[Upload!]): Category @validator @guard @can(ability:"category") @can(ability:"create",injectArgs:true)
+    editcategory(id:ID,name_en:String,name_ar:String,logo:Upload,description_en:String,description_ar:String,meta_title_en:String,meta_title_ar:String,meta_description_en:String,meta_description_ar:String,meta_logo:Upload,keywords:String,status:Int,resturant_id:ID,images:[Upload!]): Category @validator @guard @can(ability:"category") @can(ability:"update",injectArgs:true)
+    deletecategory(id:ID): Category @validator @guard @can(ability:"category") @can(ability:"delete",injectArgs:true)
+}
+
+extend type Query{
+
+    getallcategory(resturant_id:ID): [Category] @validator
+    getcategory(id:ID): Category @validator
+
+}
+
+
+
+type Category{
+
+
+    id: ID
+    name: String
+    logo: String
+    description: String
+    meta_title: String
+    meta_logo: String
+    meta_description:String
+    keywords: String
+    status: String
+    message:String
+    resturant:Resturant @belongsTo
+    images:[image!] @morphMany
+    foods: [Food] @hasMany
+}

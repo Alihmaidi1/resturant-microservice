@@ -12,22 +12,39 @@ class currency extends Model
 
     use HasFactory,HasTranslations;
 
-    public $fillable=["code","name","precent_value_in_dular"];
+    public $fillable=["code","name","precent_value_in_dular","resturant_id","is_default_for_website"];
+
     public $hidden=["created_at","updated_at"];
     public $translatable = ['name'];
 
 
-    public function resturants(){
+
+    public function resturant(){
 
 
-        return $this->belongsToMany(resturant::class,currency_resturant::class,"resturant_id","currency_id");
+        return $this->belongsTo(resturant::class,"resturant_id");
     }
 
 
-    public function currency_resturant(){
+    public function jobs(){
 
-        return $this->hasMany(currency_resturant::class,"currency_id");
-
+        return $this->hasMany(currency::class,"currency_id");
     }
 
+
+
+    public function foods(){
+
+        return $this->hasMany(food::class,"food_id");
+    }
+    public function tabletypes(){
+
+        return $this->hasMany(tabletype::class,"currency_id");
+    }
+
+
+    public function setting(){
+
+        return $this->hasOne(setting::class,"currency_id");
+    }
 }

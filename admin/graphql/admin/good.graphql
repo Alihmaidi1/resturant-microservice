@@ -1,0 +1,20 @@
+extend type Mutation{
+
+    addgood(name_en:String,name_ar:String,resturant_id:ID): Good @validator @guard @can(ability:"good") @can(ability:"create",injectArgs:true)
+    editgood(id:ID,name_en:String,name_ar:String,resturant_id:ID): Good @validator @guard @can(ability:"good") @can(ability:"update",injectArgs:true)
+    deletegood(id:ID): Good @validator @guard @can(ability:"good") @can(ability:"delete",injectArgs:true)
+}
+
+extend type Query{
+
+    getallgood(resturant_id:ID): [Good!] @validator @guard @can(ability:"good") @can(ability:"view",injectArgs:true)
+}
+
+type Good{
+
+    id:ID
+    name: String
+    message:String
+    storehouses: [storehouse] @belongsToMany
+    resturant:Resturant @belongsTo
+}

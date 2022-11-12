@@ -1,0 +1,29 @@
+extend type Mutation{
+
+    addbanner(logo:Upload,status:Int,rank:Int,url:String,where_show:Int,resturant_id:ID):Banner @validator @guard @can(ability:"banner") @can(ability:"create",injectArgs:true)
+    editbanner(id:ID,logo:Upload,status:Int,rank:Int,url:String,where_show:Int,resturant_id:ID):Banner @validator @guard @can(ability:"banner") @can(ability:"update",injectArgs:true)
+    deletebanner(id:ID):Banner @validator @guard @can(ability:"banner")  @can(ability:"delete",injectArgs:true)
+
+
+}
+
+extend type Query{
+
+    getallbanner(resturant_id:ID):[Banner!] @validator
+    getbannerwhereshow(where_show:Int,resturant_id:ID):[Banner!] @validator
+
+}
+
+
+type Banner{
+
+    id:ID
+    logo:String
+    status:Int
+    url:String
+    rank:Int
+    message:String
+    where_show:Int
+    resturant: Resturant @belongsTo
+
+    }

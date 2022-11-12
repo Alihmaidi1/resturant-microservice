@@ -1,0 +1,21 @@
+extend type Mutation{
+
+    addslider(logo:Upload,status:Int,rank:Int,resturant_id:ID): Slider @validator @guard @can(ability:"slider") @can(ability:"create",injectArgs:true)
+    editslider(id:ID,logo:Upload,status:Int,rank:Int,resturant_id:ID): Slider @validator @guard @can(ability:"slider") @can(ability:"update",injectArgs:true)
+    deleteslider(id:ID): Slider @validator @guard @can(ability:"slider") @can(ability:"delete",injectArgs:true)
+
+}
+extend type Query{
+
+    getallslider(resturant_id:ID): [Slider!]
+
+}
+type Slider{
+
+    id:ID
+    logo:String
+    status:Int
+    rank:Int
+    message:String
+    resturant:Resturant @belongsTo
+}

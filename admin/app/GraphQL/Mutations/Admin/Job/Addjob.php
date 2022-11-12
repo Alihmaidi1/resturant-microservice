@@ -18,11 +18,10 @@ final class Addjob
         $job=job::create([
             "name"=>["en"=>$args["name_en"],"ar"=>$args["name_ar"]],
             "salary"=>$args["salary"],
-            "currency_resturant_id"=>$args["currency_resturant_id"],
+            "currency_id"=>$args["currency_id"],
             "resturant_id"=>$args["resturant_id"]
         ]);
 
-        // $job->currency_resturant=currency_resturant::find($args["currency_resturant_id"]);
 
         $job->message=trans("admin.the job was add successfully");
         return $job;

@@ -27,8 +27,7 @@ type Query{
     # tables: [table] @hasMany
     # foodinresturant:[Foodinresturant!] @hasMany
     # chats: [Chat] @hasMany
-    currencies:[Currency] @belongsToMany
-    currencyinresturant:[currency_resturant] @hasMany
+    currencies:[Currency] @hasMany
 
     admins:Admin @hasMany
 }
@@ -38,16 +37,22 @@ type Resturant_without_message{
 
     id:ID
     address:String
-    # storehouses:[storehouse] @hasMany
-    # tables: [table] @hasMany
+    storehouses:[storehouse] @hasMany
+    tables: [table] @hasMany
     name:String
-    # employees:[Employee] @hasMany
-    # foods:[Food] @belongsToMany
+    employees:[Employee] @hasMany
     # chats: [Chat] @hasMany
-    currencies:[Currency] @belongsToMany
-    currencyinresturant:[currency_resturant] @hasMany
+    foods:[Food] @hasMany
+    currencies:[Currency] @hasMany
     jobs:[Job] @hasMany
     employeeExperiences:[Experience] @hasMany
+    categories:[Category] @hasMany
+    tabletypes:[tabletype] @hasMany
+    goods: [Good] @hasMany
+    sliders:[Slider] @hasMany
+    banner:[Banner] @hasMany
+    setting:Setting @hasOne
+
 }
 
 

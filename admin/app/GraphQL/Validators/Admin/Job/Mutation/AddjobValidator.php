@@ -18,7 +18,7 @@ final class AddjobValidator extends Validator
             "name_ar"=>["required"],
             "salary"=>["required"],
             "resturant_id"=>["required","exists:resturants,id"],
-            "currency_resturant_id"=>["required","exists:currency_resturants,id"]
+            "currency_id"=>["required","exists:currencies,id"]
 
         ];
     }
@@ -31,8 +31,8 @@ final class AddjobValidator extends Validator
             "name_ar.required"=>trans("admin.name in arabic is required"),
             "name_en.required"=>trans("admin.name in english is required"),
             "salary.required"=>trans("admin.salary is required"),
-            "currency_resturant_id.required"=>trans("admin.currency id is required"),
-            "currency_resturant_id.exists"=>trans("admin.currency is not exists in our data"),
+            "currency_id.required"=>trans("admin.currency id is required"),
+            "currency_id.exists"=>trans("admin.currency is not exists in our data"),
             "resturant_id.required"=>trans("admin.resturant id is required"),
             "resturant_id.exists"=>trans("admin.resturant id is not exists in our data")
         ];
