@@ -17,19 +17,24 @@ type Query{
 }
 
  type Resturant{
-
     id:ID
     address:String
+    storehouses:[storehouse] @hasMany
+    tables: [table] @hasMany
     name:String
-    # employees:[Employee] @hasMany
-    message:String
-    # storehouses:[storehouse] @hasMany
-    # tables: [table] @hasMany
-    # foodinresturant:[Foodinresturant!] @hasMany
+    employees:[Employee] @hasMany
     # chats: [Chat] @hasMany
+    foods:[Food] @hasMany
     currencies:[Currency] @hasMany
-
-    admins:Admin @hasMany
+    jobs:[Job] @hasMany
+    employeeExperiences:[Experience] @hasMany
+    categories:[Category] @hasMany
+    tabletypes:[tabletype] @hasMany
+    goods: [Good] @hasMany
+    sliders:[Slider] @hasMany
+    banner:[Banner] @hasMany
+    setting:Setting @hasOne
+    message:String
 }
 
 

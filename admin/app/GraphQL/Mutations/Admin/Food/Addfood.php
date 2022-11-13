@@ -4,6 +4,7 @@ namespace App\GraphQL\Mutations\Admin\Food;
 
 use App\Models\food;
 use App\Models\image;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 final class Addfood
@@ -53,8 +54,13 @@ final class Addfood
 
         }
 
-        // Cache::pull("foods");
-        // Cache::put("food:".$food->id,$food);
+        Cache::pull("foods");
+        Cache::rememberForever("food:".$food->id,function() use($food){
+
+            return $food;
+
+
+        });
         $food->message=trans("admin.the food was added successfully");
         return $food;
 

@@ -3,6 +3,7 @@
 namespace App\GraphQL\Queries\Admin\Category;
 
 use App\Models\category;
+use Illuminate\Support\Facades\Cache;
 
 final class Getcategory
 {
@@ -13,7 +14,10 @@ final class Getcategory
     public function __invoke($_, array $args)
     {
 
-        return category::find($args["id"]);
+        return Cache::rememberForever("category:".$args["id"],function()use($args){
+
+            return category::find($args["id"]);
+        });
 
 
     }

@@ -3,6 +3,8 @@
 namespace App\GraphQL\Queries\Admin\Food;
 
 use App\Models\food;
+use App\Models\resturant;
+use Illuminate\Support\Facades\Cache;
 
 final class Getallfood
 {
@@ -14,6 +16,11 @@ final class Getallfood
     {
 
 
-        return food::where("resturant_id",$args["resturant_id"])->get();
+        $resturant=Cache::rememberForever("resturant:".$args["resturant_id"],function($args){
+
+            return resturant::find($args["resturant_id"]);
+
+        });
+        return $resturant->foods;
     }
 }

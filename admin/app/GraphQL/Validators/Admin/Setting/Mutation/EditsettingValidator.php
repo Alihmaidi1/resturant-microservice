@@ -18,6 +18,7 @@ final class EditsettingValidator extends Validator
             "resturant_id"=>["required","exists:resturants,id"],
             "meta_logo"=>["mimes:jpg,jpeg,png"],
             "logo"=>["mimes:jpg,jpeg,png"],
+            "id"=>["required","exists:settings,id"]
 
         ];
     }
@@ -30,7 +31,9 @@ final class EditsettingValidator extends Validator
             "currency_id.exists"=>trans("admin.currency id is not exists in our data"),
             "resturant_id.exists"=>trans("admin.resturant id is not exists in our data"),
             "logo.mimes"=>trans("admin.logo should be image"),
-            "meta_logo.mimes"=>trans("admin.meta logo should be image")
+            "meta_logo.mimes"=>trans("admin.meta logo should be image"),
+            "id.required"=>trans("admin.id is required"),
+            "id.exists"=>trans("admin.is is not exists in our data")
 
         ];
     }

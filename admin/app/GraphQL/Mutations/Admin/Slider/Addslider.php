@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations\Admin\Slider;
 
 use App\Models\slider;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 final class Addslider
@@ -25,9 +26,7 @@ final class Addslider
         ]);
 
         $slider->message=trans("admin.the slider was added successfully");
-        // Cache::put("slider:".$slider->id,$slider);
-        // Cache::pull("sliders");
-        // return Cache::get("slider:".$slider->id);
+
 
         return $slider;
         }

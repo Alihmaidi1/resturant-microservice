@@ -16,6 +16,15 @@ final class Getallcategory
     public function __invoke($_, array $args)
     {
 
-        return category::where("resturant_id",$args["resturant_id"])->get();
+
+        return Cache::rememberForever("categorys",function(){
+
+
+            return category::all();
+
+        });
+
+
+
     }
 }

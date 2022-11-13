@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations\Admin\Food;
 
 use App\Models\food;
+use Illuminate\Support\Facades\Cache;
 
 final class Deletefood
 {
@@ -15,8 +16,8 @@ final class Deletefood
 
 
         $food=food::find($args["id"]);
-        // Cache::pull("foods");
-        // Cache::pull("food_".$food->id);
+        Cache::pull("foods");
+        Cache::pull("food:".$food->id);
         unlink(public_path("food/".$food->getRawOriginal("thumbnail")));
         unlink(public_path("food/".$food->getRawOriginal("meta_logo")));
         foreach($food->images as $image){

@@ -73,9 +73,13 @@ final class Editcategory
 
         }
         }
+        Cache::rememberForever("category:".$category->id,function() use($category){
 
-        Cache::pull("category_resturant_".$oldResturant.":".$category->id);
-        Cache::put("category_resturant_".$args["resturant_id"].":".$category->id,$category);
+
+            return $category;
+
+        });
+
         Cache::pull("categorys");
         $category->message=trans("admin.the category was updated successfully");
         return $category;

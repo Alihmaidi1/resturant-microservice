@@ -49,8 +49,14 @@ final class Addcategory
 
         }
         $category->message=trans("admin.the category was added successfully");
-        Cache::put("category_resturant_".$args["resturant_id"].":".$category->id,$category);
+        Cache::rememberForever("category:".$category->id,function() use($category){
+
+
+            return $category;
+
+        });
+
         Cache::pull("categorys");
-        return Cache::get("category_resturant_".$args["resturant_id"].":".$category->id);
+        return $category;
     }
 }

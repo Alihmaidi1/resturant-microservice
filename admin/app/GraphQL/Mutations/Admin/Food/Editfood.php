@@ -4,6 +4,7 @@ namespace App\GraphQL\Mutations\Admin\Food;
 
 use App\Models\food;
 use App\Models\image;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 final class Editfood
@@ -64,10 +65,18 @@ final class Editfood
                 ]);
 
             }
+
         }
 
-        // Cache::put("food:".$food->id,$food);
-        // Cache::pull("foods");
+        Cache::pull("foods");
+        Cache::rememberForever("food:".$food->id,function() use($food){
+
+            return $food;
+
+
+        });
+
+
         $food->message=trans("admin.the food was updated successfully");
         return $food;
 

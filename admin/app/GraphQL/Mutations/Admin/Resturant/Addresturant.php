@@ -4,6 +4,7 @@ namespace App\GraphQL\Mutations\Admin\Resturant;
 
 use App\Models\resturant;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 final class Addresturant
 {
@@ -18,10 +19,9 @@ final class Addresturant
             "address"=>$args["address"],
             "name"=>$args["name"]
         ]);
-
         Cache::put("resturant:".$resturant->id,$resturant);
-        $resturant->message=trans("admin.the resturant was created successfully");
         Cache::pull("resturants");
+        $resturant->message=trans("admin.the resturant was created successfully");
         return $resturant;
 
 

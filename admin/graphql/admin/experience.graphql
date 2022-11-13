@@ -18,7 +18,7 @@ type Experience{
     year:String
     benifit:Int
     vacation:Int
-    # employees:[Employee] @hasMany
+    employees:[Employee] @hasMany
     message: String
     resturant: Resturant @belongsTo
 }

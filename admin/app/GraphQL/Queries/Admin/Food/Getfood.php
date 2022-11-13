@@ -3,6 +3,7 @@
 namespace App\GraphQL\Queries\Admin\Food;
 
 use App\Models\food;
+use Illuminate\Support\Facades\Cache;
 
 final class Getfood
 {
@@ -13,7 +14,10 @@ final class Getfood
     public function __invoke($_, array $args)
     {
 
-        return food::find($args["id"]);
+        return Cache::rememberForever("food:".$args["id"],function()use($args){
+
+            return food::find($args["id"]);
+        });
 
     }
 }

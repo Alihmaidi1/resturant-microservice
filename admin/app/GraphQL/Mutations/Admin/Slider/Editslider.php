@@ -28,8 +28,6 @@ final class Editslider
         $slider->rank=$args["rank"];
         $slider->resturant_id=$args["resturant_id"];
         $slider->save();
-        // Cache::pull("sliders");
-        // Cache::put("slider:".$slider->id,$slider);
         $slider->message=trans("admin.the slider was updated successfully");
         return $slider;
 
