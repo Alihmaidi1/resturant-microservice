@@ -79,13 +79,11 @@ class resturant extends Model
 
     }
 
-
     public function setting(){
 
 
         return $this->hasOne(setting::class,"resturant_id");
     }
-
 
 
     public function goods(){

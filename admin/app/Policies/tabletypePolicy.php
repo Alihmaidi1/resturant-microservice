@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\admin;
+use App\Models\setting;
 use App\Models\User;
 use App\Models\tabletype;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -43,6 +44,11 @@ class tabletypePolicy
     public function create(admin $admin,$injected)
     {
 
+        $count=setting::where("resturant_id",$injected["resturant_id"])->count();
+        if($count==0){
+
+            return false;
+        }
         if($admin->role_id==1){
             return true;
         }
@@ -64,6 +70,13 @@ class tabletypePolicy
      */
     public function update(admin $admin, array $injected)
     {
+
+
+        $count=setting::where("resturant_id",$injected["resturant_id"])->count();
+        if($count==0){
+
+            return false;
+        }
 
         if($admin->role_id==1){
 

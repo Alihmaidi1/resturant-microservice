@@ -3,10 +3,12 @@
 namespace App\Policies;
 
 use App\Models\admin;
+use App\Models\aws;
 use App\Models\category;
 use App\Models\currency;
 use App\Models\User;
 use App\Models\food;
+use App\Models\setting;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class foodPolicy
@@ -46,6 +48,19 @@ class foodPolicy
     {
 
 
+        $count=setting::where("resturant_id",$injected["resturant_id"])->count();
+        if($count==0){
+
+            return false;
+        }
+
+
+        $aws=aws::where("resturant_id",$injected["resturant_id"])->count();
+        if($aws==0){
+
+            return false;
+        }
+
         if($admin->role_id==1){
 
             return true;
@@ -71,6 +86,19 @@ class foodPolicy
      */
     public function update(admin $admin, array $injected)
     {
+
+
+        $count=setting::where("resturant_id",$injected["resturant_id"])->count();
+        if($count==0){
+
+            return false;
+        }
+
+        $aws=aws::where("resturant_id",$injected["resturant_id"])->count();
+        if($aws==0){
+
+            return false;
+        }
 
         if($admin->role_id==1){
 

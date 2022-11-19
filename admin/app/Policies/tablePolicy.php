@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\admin;
+use App\Models\setting;
 use App\Models\User;
 use App\Models\table;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -44,6 +45,14 @@ class tablePolicy
      */
     public function create(admin $admin,array $injected)
     {
+
+
+        $count=setting::where("resturant_id",$injected["resturant_id"])->count();
+        if($count==0){
+
+            return false;
+        }
+
         if($admin->role_id==1){
 
             return true;

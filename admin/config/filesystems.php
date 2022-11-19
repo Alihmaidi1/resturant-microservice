@@ -28,18 +28,7 @@
       'use_path_style_endpoint' => false,
       'throw' => false,
     ),
-    'resturant_1' =>
-    array (
-      'driver' => 's3',
-      'key' => 'AKIAR3KVHLBETJGYG2OH',
-      'secret' => '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',
-      'region' => 'us-east-1',
-      'bucket' => 'resturant1',
-      'url' => NULL,
-      'endpoint' => NULL,
-      'use_path_style_endpoint' => false,
-      'throw' => false,
-    ),
+
   ),
   'links' =>
   array (

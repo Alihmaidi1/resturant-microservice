@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\admin;
+use App\Models\aws;
 use App\Models\User;
 use App\Models\slider;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -43,6 +44,12 @@ class sliderPolicy
     public function create(admin $admin,array $injected)
     {
 
+        $aws=aws::where("resturant_id",$injected["resturant_id"])->count();
+        if($aws==0){
+
+            return false;
+        }
+
         if($admin->role_id==1){
 
             return true;
@@ -66,6 +73,12 @@ class sliderPolicy
      */
     public function update(admin $admin,array $injected)
     {
+
+        $aws=aws::where("resturant_id",$injected["resturant_id"])->count();
+        if($aws==0){
+
+            return false;
+        }
 
         if($admin->role_id==1){
 

@@ -273,6 +273,7 @@ return [
     "paypal client id is required"=>"paypal client id is required",
     "paypal secret is required"=>"paypal secret is required",
     "the setting was added to this resturant successfully"=>"the setting was added to this resturant successfully",
+    "this setting is exists in our data"=>"this setting is exists in our data",
 
 
 

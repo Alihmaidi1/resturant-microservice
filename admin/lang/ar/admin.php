@@ -273,6 +273,7 @@ return [
     "paypal client id is required"=>"حقل الكلينت للبايبال مطلوب",
     "paypal secret is required"=>"حقل الكلمة السرية للبايبال مطلوب",
     "the setting was added to this resturant successfully"=>"تمت أضافة الاعدادات لهذا المطعم بنجاح",
+    "this setting is exists in our data"=>"هذه الاعدادات موجودة مسبقا في بياناتنا",
 
 
 

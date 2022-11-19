@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations\Admin\Setting;
 
+use App\Exceptions\CustomException;
 use App\Models\setting;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,6 +15,12 @@ final class Addsetting
     public function __invoke($_, array $args)
     {
 
+        $count=setting::where("resturant_id",$args["resturant_id"])->count();
+        if($count>0){
+
+            throw new CustomException(trans("admin.this setting is exists in our data"));
+
+        }
         $logo=saveimage("resturant_".$args["resturant_id"],$args["logo"],"setting");
         $meta_logo=saveimage("resturant_".$args["resturant_id"],$args["meta_logo"],"setting");
 

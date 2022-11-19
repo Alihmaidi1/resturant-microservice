@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\admin;
+use App\Models\aws;
 use App\Models\User;
 use App\Models\banner;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -44,6 +45,14 @@ class bannerPolicy
     {
 
 
+        $aws=aws::where("resturant_id",$injected["resturant_id"])->count();
+        if($aws==0){
+
+            return false;
+        }
+
+
+
         if($admin->role_id==1){
 
             return true;
@@ -75,6 +84,12 @@ class bannerPolicy
 
             return true;
         }
+        $aws=aws::where("resturant_id",$injected["resturant_id"])->count();
+        if($aws==0){
+
+            return false;
+        }
+
         $banner=banner::find($injected["id"]);
         if($admin->resturant_id==$injected["resturant_id"]&&$banner->resturant_id==$admin->resturant_id){
 

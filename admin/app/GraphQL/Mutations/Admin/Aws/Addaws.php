@@ -32,7 +32,6 @@ final class Addaws
             return $aws;
 
         }else{
-
             throw new CustomException(trans("admin.we have error"));
         }
 

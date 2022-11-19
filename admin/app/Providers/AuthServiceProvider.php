@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 
 use App\Models\admin;
+use App\Models\aws;
 use App\Models\banner;
 use App\Models\category;
 use App\Models\currency;
@@ -90,6 +91,7 @@ class AuthServiceProvider extends ServiceProvider
             }
 
         });
+
 
         foreach(Config::get("global.permssion") as $name=>$value){
 
