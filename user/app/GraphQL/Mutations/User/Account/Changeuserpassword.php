@@ -14,14 +14,16 @@ final class Changeuserpassword
     public function __invoke($_, array $args)
     {
 
-        $user=auth('api_user')->user();
+        $user=auth('api_reset')->user();
         $user->password=Hash::make($args["password"]);
         $user->reset_code=null;
         $user->save();
-        auth('api_user')->logout();
+        auth('api_reset')->logout();
         $user->message=trans("user.the password was updated successfully");
-        $token=tokenInfo($user->email,$args['password'],"users");
-
+        $arr=[];
+        $arr["email"]=$user->email;
+        $arr["resturant_id"]=$user->resturant_id;
+        $token=tokenInfo($arr,$args['password'],"users");
         if($token->status()==200){
 
             $user->token_info=$token->json();

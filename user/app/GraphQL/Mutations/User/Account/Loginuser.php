@@ -13,8 +13,10 @@ final class Loginuser
      */
     public function __invoke($_, array $args)
     {
-
-        $token=tokenInfo($args['email'],$args['password'],"users");
+        $arr=[];
+        $arr["email"]=$args["email"];
+        $arr["resturant_id"]=$args["resturant_id"];
+        $token=tokenInfo($arr,$args['password'],"users");
         if($token->status()==200){
 
             $user=User::where("email",$args["email"])->where("resturant_id",$args["resturant_id"])->first();
@@ -23,7 +25,6 @@ final class Loginuser
             return $user;
 
         }else{
-
 
             throw new CustomException(trans("user.The Email Or Password Is Not Correct"));
 

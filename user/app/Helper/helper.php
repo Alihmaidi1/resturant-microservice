@@ -51,17 +51,15 @@ use Illuminate\Support\Facades\Route;
     }
 
 
-    function tokenInfo($email,$password,$provider="admins"){
+    function tokenInfo($arr,$password,$provider="admins"){
 
         $client= DB::table('oauth_clients')->where("provider",$provider)->first();
-
         return Http::asForm()->post(env("APP_URL")."/oauth/token",[
                 'grant_type' => 'password',
                 'client_id' =>$client->id,
                 'client_secret' => $client->secret ,
-                'username' => $email,
+                'username' => json_encode($arr),
                 'password' => $password
-
         ]);
 
 

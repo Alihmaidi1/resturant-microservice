@@ -17,6 +17,13 @@ class User extends Authenticatable implements JWTSubject
 
     public $hidden=["created_at","updated_at"];
 
+    public function findForPassport($username)
+    {
+        $arr=json_decode($username);
+        return $this->where('email', $arr->email)->where("resturant_id",$arr->resturant_id)->first();
+    }
+
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -48,6 +55,8 @@ class User extends Authenticatable implements JWTSubject
 
         return $this->hasMany(reservation::class,"user_id");
     }
+
+
 
 
 }

@@ -35,16 +35,15 @@ final class Createuser
         Mail::to($args['email'])->send(new resetmail($verified_code));
         $user->message=trans("user.the account was created successfully");
         $user->operation_code=$verified_code;
-        $token=tokenInfo($args["email"],$args["password"],"users");
+        $arr=[];
+        $arr["email"]=$args["email"];
+        $arr["resturant_id"]=$args["resturant_id"];
+        $token=tokenInfo($arr,$args["password"],"users");
         if($token->status()==200){
-
             $user->token_info=$token->json();
             return $user;
-
         }else{
-
-            throw new CustomException(trans("user.we have error"));
-
+            throw new CustomException($token);
         }
 
 
