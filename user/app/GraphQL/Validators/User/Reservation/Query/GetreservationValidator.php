@@ -20,4 +20,14 @@ final class GetreservationValidator extends Validator
 
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+
+            "code.required"=>trans("user.code is required"),
+            "code.exists"=>trans("user.code is not exists in our data")
+
+        ];
+    }
 }

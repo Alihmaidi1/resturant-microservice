@@ -265,6 +265,7 @@ return [
     "this resturant is not have this account"=>"هذا المطعم لا يحتوي على هذا الحساب",
     "the wishlist was deleted successfully"=>"تم حذف هذا الطعام من قائمة المفضلة",
     "table id is not exists in our data"=>"معرف الطاولة غير موجود ضمن بياناتنا",
+    "code is not exists in our data"=>"الكود غير موجود ضمن بياناتنا",
 
 
 
