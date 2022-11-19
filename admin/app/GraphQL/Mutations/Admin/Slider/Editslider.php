@@ -17,12 +17,9 @@ final class Editslider
         $slider=slider::find($args["id"]);
 
         if($args["logo"]!=null){
-
-            unlink(public_path("slider/".$slider->getRawOriginal("logo")));
-            $name=rand().".".$args["logo"]->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("slider",$args["logo"],$name);
+            Storage::disk("resturant_".$slider->resturant_id);
+            $name=saveimage("resturant_".$args["resturant_id"],$args["logo"],"slider");
             $slider->logo=$name;
-
         }
         $slider->status=$args["status"];
         $slider->rank=$args["rank"];

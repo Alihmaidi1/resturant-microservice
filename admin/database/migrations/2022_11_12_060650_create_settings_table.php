@@ -43,8 +43,9 @@ return new class extends Migration
             $table->string("owner_name");
             $table->unsignedBigInteger("resturant_id");
             $table->foreign("resturant_id")->references("id")->on("resturants")->onDelete("cascade")->onUpdate("cascade");
-            // $table->text("paypal_client_id");
-            // $table->text("Paypal_secret");
+            $table->text("paypal_client_id");
+            $table->text("paypal_secret");
+
             $table->timestamps();
         });
     }

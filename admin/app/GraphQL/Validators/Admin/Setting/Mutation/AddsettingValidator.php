@@ -45,6 +45,8 @@ final class AddsettingValidator extends Validator
             "paypal_status"=>["required"],
             "owner_name"=>["required"],
             "logo"=>["required","mimes:jpg,jpeg,png"],
+            "paypal_client_id"=>["required"],
+            "paypal_secret"=>["required"]
 
         ];
     }
@@ -53,6 +55,8 @@ final class AddsettingValidator extends Validator
     {
         return [
 
+            "paypal_client_id.required"=>trans("admin.paypal client id is required"),
+            "paypal_secret.required"=>trans("admin.paypal secret is required"),
             "currency_id.exists"=>trans("admin.currency id is not exists in our data"),
             "currency_id.required"=>trans("admin.currency id is required"),
             "resturant_id.required"=>trans("admin.resturant id is required"),

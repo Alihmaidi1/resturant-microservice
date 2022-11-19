@@ -265,6 +265,14 @@ return [
     "code is required"=>"الكود مطلوب",
     "is default fpr website is required"=>"حقل فيما اذا كان افتراضي مطلوب",
     "the currency was deleted successfully from resturant"=>"تم حذف العملة من المطعم بنجاح",
+    "aws access key is required"=>"مفتاح الدخول لأمازون مطلوب",
+    "aws secret access is required"=>"الرمز السري للدخول لأمازون مطلوب",
+    "aws region is required"=>"منطقة الدخول لحساب امازون مطلوبة",
+    "aws bucket is required"=>"اسم المجلد مطلوب",
+    "the aws setting was created successfully"=>"تمت أضافة اعدادات أمازون بنجاح",
+    "paypal client id is required"=>"حقل الكلينت للبايبال مطلوب",
+    "paypal secret is required"=>"حقل الكلمة السرية للبايبال مطلوب",
+    "the setting was added to this resturant successfully"=>"تمت أضافة الاعدادات لهذا المطعم بنجاح",
 
 
 

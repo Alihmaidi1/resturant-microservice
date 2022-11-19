@@ -14,28 +14,23 @@ final class Editsetting
     public function __invoke($_, array $args)
     {
 
-        $file1=$args["meta_logo"];
         $setting=setting::find($args["id"]);
-        if($file1!=null){
-            unlink(public_path("setting/".$setting->meta_logo));
-            $meta_logo_name=time().rand(0,999999).".".$file1->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("setting",$file1,$meta_logo_name);
+        if($args["meta_logo"]!=null){
+            Storage::disk("resturant_".$setting->resturant_id)->delete($setting->getRawOriginal("meta_logo"));
+            $meta_logo_name=saveimage("resturant_".$args["resturant_id"],$args["meta_logo"],"setting");
             $setting->meta_logo=$meta_logo_name;
 
         }
 
 
 
-        $file2=$args["logo"];
-        if($file2!=null){
-            unlink(public_path("setting/".$setting->logo));
-            $logo_name=time().rand(0,999999).".".$file2->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("setting",$file2,$logo_name);
+        if($args["logo"]!=null){
+            Storage::disk("resturant_".$setting->resturant_id)->delete($setting->getRawOriginal("logo"));
+            $logo_name=saveimage("resturant_".$args["resturant_id"],$args["logo"],"setting");
             $setting->meta_logo=$logo_name;
 
         }
         $setting->status=$args["status"];
-
         $setting->phone=$args["phone"];
         $setting->meta_title=["en"=>$args["meta_title_en"],"ar"=>$args["meta_title_ar"]];
         $setting->meta_description=["en"=>$args["meta_description_en"],"ar"=>$args["meta_description_ar"]];

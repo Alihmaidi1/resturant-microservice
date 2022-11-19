@@ -20,27 +20,39 @@ final class Editcategory
         $category=category::find($args["id"]);
         $oldResturant=$category->resturant_id;
         if($args["logo"]!=null){
-            unlink(public_path("category/".$category->getRawOriginal("logo")));
-            $logo=$args["logo"];
-            $logoname=rand(0,9999999).time().".".$logo->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("category",$logo,$logoname);
-
+            Storage::disk("resturant_".$category->resturant_id)->delete($category->getRawOriginal("logo"));
+            $logoname=saveimage("resturant_".$args["resturant_id"],$args["logo"],"category");
 
         }else{
 
-            $logoname=$category->logo;
+            $logoname=$category->getRawOriginal("logo");
         }
 
         if($args["meta_logo"]!=null){
-            unlink(public_path("category/".$category->getRawOriginal("meta_logo")));
-            $meta_logo=$args["meta_logo"];
-            $meta_logoname=rand(0,9999999).time().".".$meta_logo->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("category",$meta_logo,$meta_logoname);
+            Storage::disk("resturant_".$category->resturant_id)->delete($category->getRawOriginal("meta_logo"));
+            $meta_logoname=saveimage("resturant_".$args["resturant_id"],$args["meta_logo"],"category");
 
 
         }else{
+            $meta_logoname=$category->getRawOriginal("meta_logo");
+        }
+        if($args["images"]!=null){
 
-            $meta_logoname=$category->meta_logo;
+            foreach($category->images as $image){
+
+                Storage::disk("resturant_".$category->resturant_id)->delete($image->getRawOriginal("url"));
+                $image->delete();
+
+            }
+            foreach($args["images"] as $image){
+                $namee=saveimage("resturant_".$args["resturant_id"],$image,"category");
+                image::create([
+                    "url"=>$namee,
+                    "imageable_type"=>"app\Models\category",
+                    "imageable_id"=>$category->id,
+                    "resturant_id"=>$args["resturant_id"]
+                ]);
+            }
         }
 
         $category->name=["en"=>$args["name_en"],"ar"=>$args["name_ar"]];
@@ -53,26 +65,7 @@ final class Editcategory
         $category->status=$args["status"];
         $category->resturant_id=$args["resturant_id"];
         $category->save();
-        if($args["images"]!=null){
 
-        foreach($category->images as $image){
-
-            unlink(public_path("category/".$image->getRawOriginal("url")));
-            $image->delete();
-
-        }
-        foreach($args["images"] as $image){
-            $namee=rand(0,9999999).time().".".$image->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("category",$image,$namee);
-            image::create([
-                "url"=>$namee,
-                "imageable_type"=>"app\Models\category",
-                "imageable_id"=>$category->id
-            ]);
-
-
-        }
-        }
         Cache::rememberForever("category:".$category->id,function() use($category){
 
 

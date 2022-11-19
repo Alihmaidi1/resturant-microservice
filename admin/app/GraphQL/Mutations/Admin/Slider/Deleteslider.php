@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations\Admin\Slider;
 
 use App\Models\slider;
+use Illuminate\Support\Facades\Storage;
 
 final class Deleteslider
 {
@@ -13,7 +14,7 @@ final class Deleteslider
     public function __invoke($_, array $args)
     {
         $slider=slider::find($args["id"]);
-        unlink(public_path("slider/".$slider->getRawOriginal("logo")));
+        Storage::disk("resturant_".$slider->resturant_id)->delete($slider->getRawOriginal("logo"));
         $slider1=$slider;
         $slider1->message=trans("admin.the slider was deleted successfully");
         $slider->delete();

@@ -4,6 +4,7 @@ namespace App\GraphQL\Mutations\Admin\Food;
 
 use App\Models\food;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 final class Deletefood
 {
@@ -18,12 +19,10 @@ final class Deletefood
         $food=food::find($args["id"]);
         Cache::pull("foods");
         Cache::pull("food:".$food->id);
-        unlink(public_path("food/".$food->getRawOriginal("thumbnail")));
-        unlink(public_path("food/".$food->getRawOriginal("meta_logo")));
+        Storage::disk("resturant_".$food->resturant_id)->delete($food->getRawOriginal("thumbnail"));
+        Storage::disk("resturant_".$food->resturant_id)->delete($food->getRawOriginal("meta_logo"));
         foreach($food->images as $image){
-
-            unlink(public_path("food/".$image->getRawOriginal("url")));
-
+            Storage::disk("resturant_".$food->resturant_id)->delete($image->getRawOriginal("url"));
         }
         $food->message=trans("admin.the food was deleted successfully");
         return $food;

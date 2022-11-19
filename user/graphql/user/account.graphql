@@ -1,0 +1,44 @@
+
+extend type Mutation {
+
+    createuser(name:String,email:String,password:String,resturant_id:ID):User @validator
+    verifiedaccount(code:String): Message12 @validator @guard
+    refreshtokenuser(your_refresh_token:String): Token @validator
+    edituserprofile(name:String,copon_notification:Int): User @validator @guard
+    loginuser(email:String,password:String,resturant_id:ID):User @validator
+    logoutuser:User @guard
+    sendmailuser(email:String,resturant_id:ID):Message12 @validator
+    changeuserpassword(password:String): User @validator @guard(with:"api_reset")
+    checkresetcodeuser(code:String):Message12 @validator @guard(with:"api_reset")
+
+}
+
+
+type User{
+
+    id:ID
+    name:String
+    code:String
+    balance:Int
+    copon_notification: String
+    email:String
+    status: String
+    operation_code:String
+    message:String
+    token_info: Token
+    suggests: [Suggest] @hasMany
+    wishlists:[Wishlist] @hasMany
+    # chats: [Chat] @hasMany
+    reservations:[reservation] @hasMany
+}
+type Message12{
+
+    message:String
+    token:String
+}
+type Token{
+    access_token:String
+    token_type:String
+    expires_in:String
+    refresh_token:String
+}

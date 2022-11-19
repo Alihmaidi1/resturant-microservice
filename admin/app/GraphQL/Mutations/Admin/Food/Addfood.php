@@ -17,13 +17,9 @@ final class Addfood
     {
 
         $thumbnail=$args["thumbnail"];
-        $thumbnail_name=rand(0,999999).time().".".$thumbnail->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("food",$thumbnail,$thumbnail_name);
 
-        $meta_logo=$args["meta_logo"];
-        $meta_logo_name=rand(0,999999).time().".".$meta_logo->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("food",$meta_logo,$meta_logo_name);
-
+        $thumbnail_name=saveimage("resturant_".$args["resturant_id"],$args["thumbnail"],"food");
+        $meta_logo_name=saveimage("resturant_".$args["resturant_id"],$args["meta_logo"],"food");
 
         $food=food::create([
             "name"=>["en"=>$args["name_en"],"ar"=>$args["name_ar"]],
@@ -42,18 +38,16 @@ final class Addfood
 
         foreach($args["images"] as $image){
 
-            $namee=rand(0,999999).time().".".$image->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("food",$image,$namee);
-
+            $namee=saveimage("resturant_".$args["resturant_id"],$image,"food");
             image::create([
 
                 "url"=>$namee,
                 "imageable_type"=>"app\Models\\food",
-                "imageable_id"=>$food->id
+                "imageable_id"=>$food->id,
+                "resturant_id"=>$args["resturant_id"]
             ]);
 
         }
-
         Cache::pull("foods");
         Cache::rememberForever("food:".$food->id,function() use($food){
 

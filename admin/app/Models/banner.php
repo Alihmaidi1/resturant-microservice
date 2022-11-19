@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class banner extends Model
 {
@@ -19,4 +20,14 @@ class banner extends Model
 
         return $this->belongsTo(resturant::class,"resturant_id");
     }
+
+    public function getLogoattribute($value){
+
+
+        return Storage::disk("resturant_".$this->resturant_id)->url($value);
+
+
+    }
+
+
 }

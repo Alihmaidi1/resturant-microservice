@@ -3,10 +3,50 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 
+    function saveimage($diskName,$image,$folder){
+        $logo=time().rand(0,9999999).".".$image->getClientOriginalExtension();
+        $path=Storage::disk($diskName)->putFileAs($folder,$image,$logo);
+        return $path;
+    }
 
+
+    function adddisk($name,$aws_access_key,$aws_secret_access,$aws_region,$aws_bucket){
+
+        $disks=Config::get("filesystems.disks");
+        $disks[$name]=[
+            'driver' => 's3',
+            'key' => $aws_access_key,
+            'secret' => $aws_secret_access,
+            'region' => $aws_region,
+            'bucket' => $aws_bucket,
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
+        ];
+        config(['filesystems.disks' => $disks]);
+        $fp = fopen(base_path() .'/config/filesystems.php' , 'w');
+        fwrite($fp, '<?php return ' . var_export(config('filesystems'), true) . ';');
+        fclose($fp);
+
+
+    }
+
+
+    function deletedisk($name){
+        $disks=Config::get("filesystems.disks");
+        unset($disks[$name]);
+        config(['filesystems.disks' => $disks]);
+        $fp = fopen(base_path() .'/config/filesystems.php' , 'w');
+        fwrite($fp, '<?php return ' . var_export(config('filesystems'), true) . ';');
+        fclose($fp);
+
+    }
 
     function updateEnv($data = array())
     {

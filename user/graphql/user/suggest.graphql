@@ -1,0 +1,29 @@
+
+extend type Mutation {
+
+    addsuggest(description:String,resturant_id:ID): Suggest @validator @guard @can(ability:"create",injectArgs:true)
+    editsuggest(id:ID,description:String):Suggest @validator @guard @can(ability:"update",injectArgs:true)
+    deletesuggest(id:ID):Suggest @validator @guard @can(ability:"delete",injectArgs:true)
+}
+
+
+extend type Query{
+
+
+    getallsuggest: [Suggest!] @guard
+    getsuggestinresturant(resturant_id:ID):[Suggest] @validator
+}
+
+
+type Suggest{
+
+
+    id: ID
+    description: String
+    message: String
+    user: User @belongsTo
+    resturant_id:Int
+
+
+
+}

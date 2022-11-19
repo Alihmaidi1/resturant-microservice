@@ -265,6 +265,15 @@ return [
     "code is required"=>"code is required",
     "is default fpr website is required"=>"is default fpr website is required",
     "the currency was deleted successfully from resturant"=>"the currency was deleted successfully from resturant",
+    "aws access key is required"=>"aws access key is required",
+    "aws secret access is required"=>"aws secret access is required",
+    "aws region is required"=>"aws region is required",
+    "aws bucket is required"=>"aws bucket is required",
+    "the aws setting was created successfully"=>"the aws setting was created successfully",
+    "paypal client id is required"=>"paypal client id is required",
+    "paypal secret is required"=>"paypal secret is required",
+    "the setting was added to this resturant successfully"=>"the setting was added to this resturant successfully",
+
 
 
 

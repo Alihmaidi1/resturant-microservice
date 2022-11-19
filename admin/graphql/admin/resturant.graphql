@@ -57,7 +57,7 @@ type Resturant_without_message{
     sliders:[Slider] @hasMany
     banner:[Banner] @hasMany
     setting:Setting @hasOne
-
+    aws: Aws @hasOne
 }
 
 

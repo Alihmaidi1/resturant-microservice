@@ -1,0 +1,56 @@
+extend type Mutation{
+
+    addreservation(table_id:ID,name:String,start:String,end:String): reservation @guard @validator @can(ability:"create",injectArgs:true)
+    editreservation(id:ID,name:String,start:String,end:String,table_id:Int): reservation @guard @validator @can(ability:"update",injectArgs:true)
+    deletereservation(id:ID):reservation @validator @guard @can(ability:"delete",injectArgs:true)
+}
+
+extend type Query{
+
+
+    getreservation(code:String):reservation @guard @validator @can(ability:"code",injectArgs:true)
+    getreservationbyid(id:ID):reservation  @guard @validator @can(ability:"view",injectArgs:true)
+    getreservationinday(table_id:ID,day:String):[reservation] @validator
+    getreservationuser:[reservation] @guard
+}
+
+
+type reservation{
+
+    id:ID
+    code:String
+    table: table
+    name:String
+    status: Int
+    start:String
+    end:String
+    message:String
+    currency: Currency
+    price:Float
+    paymentUrl: String
+    user:User @belongsTo
+
+}
+
+
+
+type Currency{
+    id:ID
+    code:String
+    name:String
+    is_default_for_website:String
+    precent_value_in_dular:String
+    message: String
+}
+
+
+type table{
+
+    id: ID
+    name: String
+    person_number: Int
+    status:String
+    description:String
+    message:String
+
+}

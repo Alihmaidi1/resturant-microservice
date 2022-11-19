@@ -18,13 +18,8 @@ final class Addcategory
     public function __invoke($_, array $args)
     {
 
-        $logo=$args["logo"];
-        $logoname=rand(0,9999999).time().".".$logo->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("category",$logo,$logoname);
-        $meta_logo=$args["meta_logo"];
-        $meta_logoname=rand(0,9999999).time().".".$meta_logo->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("category",$meta_logo,$meta_logoname);
-
+        $logoname=saveimage("resturant_".$args["resturant_id"],$args["logo"],"category");
+        $meta_logoname=saveimage("resturant_".$args["resturant_id"],$args["meta_logo"],"category");
         $category=category::create([
             "name"=>["en"=>$args["name_en"],"ar"=>$args["name_ar"]],
             "logo"=>$logoname,
@@ -39,23 +34,17 @@ final class Addcategory
 
         $images=$args["images"];
         foreach($images as $image){
-            $namee=rand(0,9999999).time().".".$image->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("category",$image,$namee);
+            $namee=saveimage("resturant_".$args["resturant_id"],$image,"category");
             image::create([
                 "url"=>$namee,
                 "imageable_type"=>"app\Models\category",
-                "imageable_id"=>$category->id
+                "imageable_id"=>$category->id,
+                "resturant_id"=>$args["resturant_id"]
             ]);
 
         }
         $category->message=trans("admin.the category was added successfully");
-        Cache::rememberForever("category:".$category->id,function() use($category){
-
-
-            return $category;
-
-        });
-
+        Cache::put("category:".$category->id,$category);
         Cache::pull("categorys");
         return $category;
     }

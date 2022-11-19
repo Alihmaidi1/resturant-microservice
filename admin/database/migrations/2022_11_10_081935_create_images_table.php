@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->morphs("imageable");
             $table->string("url");
+            $table->unsignedBigInteger("resturant_id");
+            $table->foreign("resturant_id")->references("id")->on("resturants")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

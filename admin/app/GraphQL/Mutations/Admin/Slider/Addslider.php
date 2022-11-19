@@ -15,19 +15,14 @@ final class Addslider
     public function __invoke($_, array $args)
     {
 
-        $logo=$args["logo"];
-        $name=rand(0,99999999).".".$logo->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("slider",$logo,$name);
+        $name=saveimage("resturant_".$args["resturant_id"],$args["logo"],"slider");
         $slider=slider::create([
             "logo"=>$name,
             "status"=>$args["status"],
             "rank"=>$args["rank"],
             "resturant_id"=>$args["resturant_id"]
         ]);
-
         $slider->message=trans("admin.the slider was added successfully");
-
-
         return $slider;
         }
 }

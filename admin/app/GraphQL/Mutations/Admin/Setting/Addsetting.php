@@ -14,10 +14,8 @@ final class Addsetting
     public function __invoke($_, array $args)
     {
 
-        $logo=time().rand(0,9999999).".".$args["logo"]->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("setting",$args["logo"],$logo);
-        $meta_logo=time().rand(0,9999999).".".$args["meta_logo"]->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("setting",$args["meta_logo"],$meta_logo);
+        $logo=saveimage("resturant_".$args["resturant_id"],$args["logo"],"setting");
+        $meta_logo=saveimage("resturant_".$args["resturant_id"],$args["meta_logo"],"setting");
 
         $setting=setting::create([
 
@@ -46,10 +44,11 @@ final class Addsetting
             "twitter_link"=>$args["twitter_link"],
             "paypal_status"=>$args["paypal_status"],
             "owner_name"=>$args["owner_name"],
-            "resturant_id"=>$args["resturant_id"]
-
+            "resturant_id"=>$args["resturant_id"],
+            "paypal_client_id"=>$args["paypal_client_id"],
+            "paypal_secret"=>$args["paypal_secret"]
         ]);
-        $setting->message="dssd";
+        $setting->message=trans("admin.the setting was added to this resturant successfully");
         return $setting;
 
 

@@ -3,6 +3,8 @@
 namespace App\GraphQL\Mutations\Admin\Banner;
 
 use App\Models\banner;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 final class Deletebanner
 {
@@ -15,12 +17,13 @@ final class Deletebanner
 
 
         $banner=banner::find($args["id"]);
-        // Cache::pull("banners");
-        // Cache::pull("banner:".$banner->id);
-        unlink(public_path("banner/".$banner->getRawOriginal("logo")));
-        $banner->message=trans("admin.the banner was deleted successfully");
+        Storage::disk("resturant_".$banner->id)->delete($banner->getRawOriginal("logo"));
+        $banner1=$banner;
+        $banner->delete();
+        Cache::pull("banners");
+        Cache::pull("banner:".$banner1->id);
+        $banner1->message=trans("admin.the banner was deleted successfully");
         return $banner;
-
 
     }
 }

@@ -1,0 +1,23 @@
+extend type Mutation{
+
+    addaws(aws_access_key:String,aws_secret_access:String,aws_region:String,aws_bucket:String,resturant_id:ID):Aws @validator @guard
+    editaws(id:ID,aws_access_key:String,aws_secret_access:String,aws_region:String,aws_bucket:String,resturant_id:ID):Aws @validator @guard
+
+
+}
+
+extend type Query{
+
+    getaws(resturant_id:ID): Aws @guard @validator
+}
+
+type Aws{
+
+    id:ID
+    aws_access_key:String
+    aws_secret_access:String
+    aws_region:String
+    aws_bucket:String
+    resturant:Resturant @belongsTo
+
+}

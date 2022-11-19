@@ -2,6 +2,9 @@ version: '3'
 networks:
   admin:
     driver: bridge
+  user:
+    driver: bridge
+
 services:
 
   admin_mysql:
@@ -62,3 +65,52 @@ services:
 
     volumes:
       - ./redis:/redis
+
+
+  user_mysql:
+    image: mysql:8
+    container_name: user_mysql
+    ports:
+      - 33077:3306
+    
+    networks:
+      - user
+    volumes: 
+      - ./user_mysql:/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ali450892
+      MYSQL_DATABASE: resturant_user
+    
+    restart: always
+
+  user_app:
+
+    build:
+      context: .
+      dockerfile: dockerfile2
+    ports:
+      - 9081:9081
+    networks:
+      - user
+    volumes:
+      - ./user:/app
+    container_name: user_app
+    depends_on:
+      - user_mysql
+  
+  user_app2:
+
+    build:
+      context: .
+      dockerfile: dockerfile3
+    ports:
+      - 9082:9082
+    networks:
+      - user
+    volumes:
+      - ./user:/app
+    container_name: user_app2
+    depends_on:
+      - user_mysql
+      - user_app
+  

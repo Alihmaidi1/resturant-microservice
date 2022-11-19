@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 class category extends Model
@@ -30,5 +31,23 @@ class category extends Model
 
         return $this->belongsTo(resturant::class,"resturant_id");
     }
+
+    public function getLogoattribute($value){
+
+
+        return Storage::disk("resturant_".$this->resturant_id)->url($value);
+
+
+    }
+
+
+    public function getMetaLogoattribute($value){
+
+
+        return Storage::disk("resturant_".$this->resturant_id)->url($value);
+
+
+    }
+
 
 }

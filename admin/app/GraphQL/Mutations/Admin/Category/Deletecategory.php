@@ -4,6 +4,7 @@ namespace App\GraphQL\Mutations\Admin\Category;
 
 use App\Models\category;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 final class Deletecategory
 {
@@ -17,11 +18,11 @@ final class Deletecategory
         $category=category::find($args["id"]);
         Cache::pull("category:".$category->id);
         Cache::pull("categorys");
-        unlink(public_path("category/".$category->getRawOriginal("logo")));
-        unlink(public_path("category/".$category->getRawOriginal("meta_logo")));
+        Storage::disk("resturant_".$category->resturant_id)->delete($category->getRawOriginal("logo"));
+        Storage::disk("resturant_".$category->resturant_id)->delete($category->getRawOriginal("meta_logo"));
         foreach($category->images as $image){
 
-            unlink(public_path("category/".$image->getRawOriginal("url")));
+            Storage::disk("resturant_".$category->resturant_id)->delete($image->getRawOriginal("url"));
         }
         $category1=$category;
         $category1->message=trans("admin.the category was deleted successfully");

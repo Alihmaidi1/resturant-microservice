@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations\Admin\Banner;
 
 use App\Models\banner;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 final class Addbanner
@@ -14,10 +15,7 @@ final class Addbanner
     public function __invoke($_, array $args)
     {
 
-        $logo=$args["logo"];
-        $name=time().".".$logo->getClientOriginalExtension();
-        Storage::disk("public")->putFileAs("banner",$logo,$name);
-
+        $name=saveimage("resturant_".$args["resturant_id"],$args["logo"],"banner");
         $banner=banner::create([
             "logo"=>$name,
             "status"=>$args["status"],
@@ -27,9 +25,9 @@ final class Addbanner
             "resturant_id"=>$args["resturant_id"]
         ]);
 
-        // Cache::pull("banners");
-        // Cache::put("banner:".$banner->id,$banner);
         $banner->message=trans("admin.the banner was added successfully");
+        Cache::pull("banners");
+        Cache::put("banner:".$banner->id,$banner);
         return $banner;
 
     }

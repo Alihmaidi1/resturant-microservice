@@ -19,9 +19,8 @@ final class Editfood
         $food=food::find($args["id"]);
         if($args["thumbnail"]!=null){
 
-            unlink("food/".$food->getRawOriginal("thumbnail"));
-            $name_thumbnail=rand(0,999999).time().".".$args["thumbnail"]->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("food",$args["thumbnail"],$name_thumbnail);
+            Storage::disk("resturant_".$food->resturant_id)->delete($food->getRawOriginal("thumbnail"));
+            $name_thumbnail=saveimage("resturant_".$args["resturant_id"],$args["thumbnail"],"food");
             $food->thumbnail=$name_thumbnail;
 
 
@@ -30,12 +29,31 @@ final class Editfood
 
         if($args["meta_logo"]!=null){
 
-            unlink("food/".$food->getRawOriginal("meta_logo"));
-            $name_meta_logo=rand(0,999999).time().".".$args["meta_logo"]->getClientOriginalExtension();
-            Storage::disk("public")->putFileAs("food",$args["meta_logo"],$name_meta_logo);
+            Storage::disk("resturant_".$food->resturant_id)->delete($food->getRawOriginal("meta_logo"));
+            $name_meta_logo=saveimage("resturant_".$args["resturant_id"],$args["meta_logo"],"food");
             $food->meta_logo=$name_meta_logo;
 
         }
+        if($args["images"]!=null){
+
+            foreach($food->images as $image){
+                Storage::disk("resturant_".$food->resturant_id)->delete($image->getRawOriginal("url"));
+                $image->delete();
+            }
+            foreach($args["images"] as $image){
+
+                $namee=saveimage("resturant_".$args["resturant_id"],$image,"food");
+                image::create([
+                    "url"=>$namee,
+                    "imageable_type"=>"app\Models\\food",
+                    "imageable_id"=>$food->id,
+                    "resturant_id"=>$args["resturant_id"]
+                ]);
+
+            }
+
+        }
+
         $food->name=["en"=>$args["name_en"],"ar"=>$args["name_ar"]];
         $food->description=["en"=>$args["description_en"],"ar"=>$args["description_ar"]];
         $food->tag=$args["tag"];
@@ -47,26 +65,6 @@ final class Editfood
         $food->currency_id=$args["currency_id"];
         $food->resturant_id=$args["resturant_id"];
         $food->save();
-        if($args["images"]!=null){
-
-            foreach($food->images as $image){
-                unlink(public_path("food/".$image->getRawOriginal("url")));
-                $image->delete();
-            }
-            foreach($args["images"] as $image){
-
-                $namee=rand(0,99999).time().".".$image->getClientOriginalExtension();
-                Storage::disk("public")->putFileAs("food",$image,$namee);
-
-                image::create([
-                    "url"=>$namee,
-                    "imageable_type"=>"app\Models\\food",
-                    "imageable_id"=>$food->id
-                ]);
-
-            }
-
-        }
 
         Cache::pull("foods");
         Cache::rememberForever("food:".$food->id,function() use($food){
