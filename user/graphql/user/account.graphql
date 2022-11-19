@@ -14,6 +14,14 @@ extend type Mutation {
 }
 
 
+extend type Query{
+
+    getme:User @guard @auth
+}
+
+
+
+
 type User{
 
     id:ID

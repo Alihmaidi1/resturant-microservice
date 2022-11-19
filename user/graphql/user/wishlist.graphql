@@ -1,13 +1,13 @@
 extend type Mutation {
 
-    addwishlist(food_id:Int):Wishlist @validator @guard @can(ability:"create",injectArgs:true)
-    deletewishlist(id:ID):Wishlist @validator @guard @can(ability:"delete",injectArgs:true)
+    addwishlist(food_id:Int):Wishlist @validator @guard @can(ability:"create",injectArgs:true) @can(ability:"isactiveuser")
+    deletewishlist(id:ID):Wishlist @validator @guard @can(ability:"delete",injectArgs:true) @can(ability:"isactiveuser")
 
 }
 
 extend type Query{
 
-    getallwishlist:[Wishlist] @guard
+    getallwishlist:[Wishlist] @guard @can(ability:"isactiveuser")
 }
 
 

@@ -1,16 +1,16 @@
 
 extend type Mutation {
 
-    addsuggest(description:String,resturant_id:ID): Suggest @validator @guard @can(ability:"create",injectArgs:true)
-    editsuggest(id:ID,description:String):Suggest @validator @guard @can(ability:"update",injectArgs:true)
-    deletesuggest(id:ID):Suggest @validator @guard @can(ability:"delete",injectArgs:true)
+    addsuggest(description:String,resturant_id:ID): Suggest @validator @guard @can(ability:"create",injectArgs:true) @can(ability:"isactiveuser")
+    editsuggest(id:ID,description:String):Suggest @validator @guard @can(ability:"update",injectArgs:true)  @can(ability:"isactiveuser")
+    deletesuggest(id:ID):Suggest @validator @guard @can(ability:"delete",injectArgs:true) @can(ability:"isactiveuser")
 }
 
 
 extend type Query{
 
 
-    getallsuggest: [Suggest!] @guard
+    getallsuggest: [Suggest!] @guard @can(ability:"isactiveuser")
     getsuggestinresturant(resturant_id:ID):[Suggest] @validator
 }
 

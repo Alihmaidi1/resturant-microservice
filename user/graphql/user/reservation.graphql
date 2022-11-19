@@ -1,17 +1,17 @@
 extend type Mutation{
 
-    addreservation(table_id:ID,name:String,start:String,end:String): reservation @guard @validator @can(ability:"create",injectArgs:true)
-    editreservation(id:ID,name:String,start:String,end:String,table_id:Int): reservation @guard @validator @can(ability:"update",injectArgs:true)
-    deletereservation(id:ID):reservation @validator @guard @can(ability:"delete",injectArgs:true)
+    addreservation(table_id:ID,name:String,start:String,end:String): reservation @guard @validator @can(ability:"create",injectArgs:true) @can(ability:"isactiveuser")
+    editreservation(id:ID,name:String,start:String,end:String,table_id:Int): reservation @guard @validator @can(ability:"update",injectArgs:true) @can(ability:"isactiveuser")
+    deletereservation(id:ID):reservation @validator @guard @can(ability:"delete",injectArgs:true) @can(ability:"isactiveuser")
 }
 
 extend type Query{
 
 
-    getreservation(code:String):reservation @guard @validator @can(ability:"code",injectArgs:true)
-    getreservationbyid(id:ID):reservation  @guard @validator @can(ability:"view",injectArgs:true)
+    getreservation(code:String):reservation @guard @validator @can(ability:"code",injectArgs:true) @can(ability:"isactiveuser")
+    getreservationbyid(id:ID):reservation  @guard @validator @can(ability:"view",injectArgs:true) @can(ability:"isactiveuser")
     getreservationinday(table_id:ID,day:String):[reservation] @validator
-    getreservationuser:[reservation] @guard
+    getreservationuser:[reservation] @guard @can(ability:"isactiveuser")
 }
 
 

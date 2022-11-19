@@ -1,15 +1,15 @@
 
 extend type Mutation{
 
-    addtocart(food_id:ID,quantity:Int):Cart @validator @guard @can(ability:"create",injectArgs:true)
-    editcartquantity(id:ID,quantity:Int):Cart @validator @guard @can(ability:"update",injectArgs:true)
-    deletecart(id:ID):Cart @validator @guard @can(ability:"delete",injectArgs:true)
+    addtocart(food_id:ID,quantity:Int):Cart @validator @guard @can(ability:"create",injectArgs:true) @can(ability:"isactiveuser")
+    editcartquantity(id:ID,quantity:Int):Cart @validator @guard @can(ability:"update",injectArgs:true) @can(ability:"isactiveuser")
+    deletecart(id:ID):Cart @validator @guard @can(ability:"delete",injectArgs:true) @can(ability:"isactiveuser")
 
 }
 
 extend type Query{
 
-    getallcart:[Cart] @guard
+    getallcart:[Cart] @guard @can(ability:"isactiveuser")
 
 
 }

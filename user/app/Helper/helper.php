@@ -60,7 +60,7 @@ use Illuminate\Support\Facades\Route;
                 'client_id' =>$client->id,
                 'client_secret' => $client->secret ,
                 'username' => $email,
-                'password' => $password,
+                'password' => $password
 
         ]);
 
