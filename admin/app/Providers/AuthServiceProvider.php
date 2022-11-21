@@ -8,6 +8,7 @@ use App\Models\admin;
 use App\Models\aws;
 use App\Models\banner;
 use App\Models\category;
+use App\Models\chat;
 use App\Models\currency;
 use App\Models\currency_resturant;
 use App\Models\employee;
@@ -24,6 +25,7 @@ use App\Models\tabletype;
 use App\Policies\adminPolicy;
 use App\Policies\bannerPolicy;
 use App\Policies\categoryPolicy;
+use App\Policies\chatPolicy;
 use App\Policies\currencyPolicy;
 use App\Policies\employeePolicy;
 use App\Policies\experiencePolicy;
@@ -66,7 +68,8 @@ class AuthServiceProvider extends ServiceProvider
         slider::class=>sliderPolicy::class,
         banner::class=>bannerPolicy::class,
         food::class=>foodPolicy::class,
-        setting::class=>settingPolicy::class
+        setting::class=>settingPolicy::class,
+        chat::class=>chatPolicy::class
 
 
     ];

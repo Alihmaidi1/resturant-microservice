@@ -4,7 +4,7 @@ use App\Http\Controllers\api\food;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\resturant;
 use App\Http\Controllers\api\table;
-
+use \App\Http\Controllers\api\message;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +19,4 @@ use App\Http\Controllers\api\table;
 Route::post("/checkresturantid",[resturant::class,"checkresturantid"]);
 Route::post("/checkfoodid",[food::class,"checkfoodid"]);
 Route::post("/checktableid",[table::class,"checktableid"]);
-// Route::post("checktableid",);
+Route::post("/getallmessage",[message::class,"getallmessage"]);

@@ -275,6 +275,9 @@ return [
     "the setting was added to this resturant successfully"=>"تمت أضافة الاعدادات لهذا المطعم بنجاح",
     "this setting is exists in our data"=>"هذه الاعدادات موجودة مسبقا في بياناتنا",
 
+    "chat id is not exists in our data"=>"هذه الدردشة غير موجودة ضمن بياناتنا",
+    "chat id is required"=>"معرف الدردشة مطلوب",
+    "the message made read successfully"=>"تم جعل الرسالة مقرؤة بنجاح",
 
 
 

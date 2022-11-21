@@ -1,0 +1,33 @@
+extend type Mutation {
+
+    readdone(chat_id:ID):MessageDone @validator @guard @can(ability:"readdone",injectArgs:true,model:"App\\Models\\chat")
+
+}
+
+
+extend type Query{
+
+
+    getchatresturant(resturant_id:ID):[Chat] @guard @validator @can(ability:"view",injectArgs:true)
+    getallmessage(chat_id:ID): [Message] @guard @validator @can(ability:"getmessage",injectArgs:true,model:"App\\Models\\chat")
+
+}
+type MessageDone{
+
+    message:String
+}
+
+type Chat{
+    id:ID
+    resturant:Resturant @belongsTo
+    user: User
+    messages: [Message] @hasmany
+    unreadnumber:Int
+}
+
+type User{
+
+    id:ID
+    name:String
+    email:String
+}

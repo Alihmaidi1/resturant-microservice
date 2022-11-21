@@ -1,0 +1,21 @@
+extend type Query{
+
+    getallmessage:[Message] @guard
+
+
+}
+
+
+type messagestatus{
+
+    message:String
+}
+type Message{
+
+    id:ID
+    content: String
+    status: Int
+    sendBy: String
+    created_at: String
+
+}

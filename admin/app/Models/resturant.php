@@ -13,6 +13,13 @@ class resturant extends Model
     public $hidden=["created_at","updated_at"];
 
 
+    public function chats(){
+
+        return $this->hasMany(chat::class,"resturant_id");
+
+    }
+
+
     public function  aws(){
 
         return $this->hasOne(aws::class,"resturant_id");

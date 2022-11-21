@@ -13,6 +13,7 @@ type Query{
 
     findresturant(id:ID):Resturant @validator
     getallresturant:[Resturant_without_message!]
+    chats:[Chat] @hasMany
 
 }
 

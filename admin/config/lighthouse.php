@@ -188,6 +188,7 @@ return [
             'App\\GraphQL\\Queries\\Admin\\Food',
             'App\\GraphQL\\Queries\\Admin\\Setting',
             'App\\GraphQL\\Queries\\Admin\\Aws',
+            'App\\GraphQL\\Queries\\Admin\\Chat',
 
 
 
@@ -215,6 +216,7 @@ return [
             'App\\GraphQL\\Mutations\\Admin\\Food',
             'App\\GraphQL\\Mutations\\Admin\\Setting',
             'App\\GraphQL\\Mutations\\Admin\\Aws',
+            'App\\GraphQL\\Mutations\\Admin\\Chat',
 
 
             'App\\GraphQL\\Mutations'
@@ -245,6 +247,7 @@ return [
             'App\\GraphQL\\Validators\\Admin\\Food',
             'App\\GraphQL\\Validators\\Admin\\Setting',
             'App\\GraphQL\\Validators\\Admin\\Aws',
+            'App\\GraphQL\\Validators\\Admin\\Chat',
 
 
             'App\\GraphQL\\Validators'

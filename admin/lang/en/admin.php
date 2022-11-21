@@ -274,6 +274,9 @@ return [
     "paypal secret is required"=>"paypal secret is required",
     "the setting was added to this resturant successfully"=>"the setting was added to this resturant successfully",
     "this setting is exists in our data"=>"this setting is exists in our data",
+    "chat id is not exists in our data"=>"chat id is not exists in our data",
+    "chat id is required"=>"chat id is required",
+    "the message made read successfully"=>"the message made read successfully",
 
 
 

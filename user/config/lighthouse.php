@@ -177,6 +177,7 @@ return [
             'App\\GraphQL\\Queries\\User\\Wishlist',
             'App\\GraphQL\\Queries\\User\\Cart',
             'App\\GraphQL\\Queries\\User\\Reservation',
+            'App\\GraphQL\\Queries\\User\\Message',
 
 
             'App\\GraphQL\\Queries'
@@ -189,6 +190,7 @@ return [
             'App\\GraphQL\\Mutations\\User\\Wishlist',
             'App\\GraphQL\\Mutations\\User\\Cart',
             'App\\GraphQL\\Mutations\\User\\Reservation',
+            'App\\GraphQL\\Mutations\\User\\Message',
 
 
             'App\\GraphQL\\Mutations'
@@ -205,6 +207,7 @@ return [
             'App\\GraphQL\\Validators\\User\\Wishlist',
             'App\\GraphQL\\Validators\\User\\Cart',
             'App\\GraphQL\\Validators\\User\\Reservation',
+            'App\\GraphQL\\Validators\\User\\Message',
 
 
 
