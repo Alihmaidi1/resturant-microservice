@@ -266,6 +266,7 @@ return [
     "the wishlist was deleted successfully"=>"تم حذف هذا الطعام من قائمة المفضلة",
     "table id is not exists in our data"=>"معرف الطاولة غير موجود ضمن بياناتنا",
     "code is not exists in our data"=>"الكود غير موجود ضمن بياناتنا",
+    "the message make read successfully"=>"تم جعل الرسالة مقرية بنجاح",
 
 
 

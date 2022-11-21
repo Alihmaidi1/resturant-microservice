@@ -1,15 +1,22 @@
 extend type Query{
 
     getallmessage:[Message] @guard
+    getunreadmessage: messagestatus @guard
+}
+
+extend type Mutation {
+
+    changereadmessages:messagestatus @guard
+
 
 
 }
-
-
 type messagestatus{
 
     message:String
+    count:Int
 }
+
 type Message{
 
     id:ID

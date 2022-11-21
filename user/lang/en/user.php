@@ -266,6 +266,7 @@ return [
     "the wishlist was deleted successfully"=>"the wishlist was deleted successfully",
     "table id is not exists in our data"=>"table id is not exists in our data",
     "code is not exists in our data"=>"code is not exists in our data",
+    "the message make read successfully"=>"the message make read successfully",
 
 
 
