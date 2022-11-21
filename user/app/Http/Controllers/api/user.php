@@ -24,4 +24,15 @@ class user extends Controller
 
     }
 
+
+    public function getuserinfo(Request $request){
+
+
+        return auth("api")->user();
+
+    }
+
+
+
+
 }

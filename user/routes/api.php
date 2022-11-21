@@ -15,4 +15,5 @@ use \App\Http\Controllers\api\user;
 */
 
 Route::post("getuser",[user::class,"getuser"]);
+Route::post("getuserinfo",[user::class,"getuserinfo"])->middleware("auth:api");
 
