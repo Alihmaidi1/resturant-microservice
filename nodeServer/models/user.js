@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const db = require("../util/database");
 
 class User {
@@ -5,16 +6,20 @@ class User {
 
     async getCountUserById(id) {
 
-        let count;
-        return await db.execute(`SELECT COUNT(id) as countid from users WHERE id=${id}`).then((res) => {
 
-            count = res[0].countid;
+        let count;
+        let arr = [];
+        arr["id"] = id;
+        return await axios.post(process.env.URL_URL + "/api/getusercount", arr).then((res) => {
+
+            count = JSON.parse(res);
             return count;
 
 
         }).catch((error) => {
 
             throw new Error(error.message)
+
 
         })
 

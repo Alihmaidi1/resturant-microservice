@@ -9,7 +9,7 @@ class admin extends Controller
 {
 
 
-    public function admin(Request $request){
+    public function getadmin(Request $request){
 
         return auth("api")->user();
 

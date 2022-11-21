@@ -11,7 +11,7 @@ class Chat {
             })
             .catch((err) => {
 
-                throw new Error("We Have Error")
+                throw new Error(err)
 
             })
 

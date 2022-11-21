@@ -34,5 +34,20 @@ class user extends Controller
 
 
 
+    public function getusercount(Request $request){
+
+
+        $user=ModelsUser::find($request->id);
+        if($user!=null){
+
+            return response()->json($user,200);
+        }else{
+
+            return response()->json([],401);
+        }
+
+
+    }
+
 
 }

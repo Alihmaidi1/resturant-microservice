@@ -23,4 +23,4 @@ Route::post("/checktableid",[table::class,"checktableid"]);
 Route::post("/getallmessage",[message::class,"getallmessage"]);
 Route::post("/getunreadmessage",[message::class,"getunreadmessage"]);
 Route::post("/readmessageuser",[message::class,"readmessageuser"]);
-Route::post("getuserinfo",[admin::class,"getadmin"])->middleware("auth:api");
+Route::post("/checkToken",[admin::class,"getadmin"])->middleware("auth:api");

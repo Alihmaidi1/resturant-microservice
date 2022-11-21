@@ -1,7 +1,7 @@
 const axios = require("axios");
-module.exports = (socket, next) => {
+module.exports = async(socket, next) => {
     let token = socket.handshake.headers.token;
-    axios.post(process.env.ADMIN_URL + "/api" + "/checkToken", undefined, {
+    let admin = await axios.post(process.env.ADMIN_URL + "/api" + "/checkToken", undefined, {
         headers: {
 
             Authorization: `Bearer ${token}`
@@ -10,22 +10,35 @@ module.exports = (socket, next) => {
     }).then((res) => {
 
         socket.user = res.data;
+        socket.user.type = 1;
         next()
+
+
+    }).catch((err) => {
+
+        axios.post(process.env.USER_URL + "/api" + "/checkToken", undefined, {
+            headers: {
+
+                Authorization: `Bearer ${token}`
+
+            }
+        }).then((res) => {
+
+            socket.user = res.data;
+            socket.user.type = 2;
+
+            next()
+
+        }).catch((err) => {
+
+            next(new Error("we have error"))
+        })
+
+
 
     })
 
-    axios.post(process.env.USER_URL + "/api" + "/checkToken", undefined, {
-        headers: {
 
-            Authorization: `Bearer ${token}`
-
-        }
-    }).then((res) => {
-
-        socket.user = res.data;
-        next()
-
-    })
 
 
 
